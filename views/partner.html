@@ -1,0 +1,86 @@
+<@ include template/head.html @>
+<h3>partners</h3>
+
+<div class="row">
+    <div id="export" class="span3 show-grid">
+        <a href="#" class="btn btn-large btn-block btn-success">导出数据</a>
+    </div>
+</div>
+
+<div id="partners" class="row">
+
+</div>
+
+<div id="partner" class="row attr-row">
+
+</div>
+
+<div id="alert"></div>
+</div>
+<!-- Modal -->
+<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h3 id="myModalLabel">create monster</h3>
+    </div>
+    <div class="modal-body">
+
+    </div>
+    <div class="modal-footer">
+        <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+    </div>
+</div>
+<@ include template/script.html @>
+<script type="text/javascript" src="js/lib/jquery.form.js"></script>
+<script type="text/javascript" src="js/utils/utils.js"></script>
+<script type="text/javascript" src="js/partner.js"></script>
+<script type="text/javascript" src="shared/model/Hero.js"></script>
+<script type="text/javascript" src="shared/formula.js"></script>
+<script type="text/javascript" src="js/upload.js"></script>
+<script type="text/html" id='partnersTemplate'>
+    <%
+    _.each(partners, function(item, key, list) {
+    var name = item.heroName;
+    %>
+    <div class="span3 hero show-grid">
+        <a id="<%= item.id%>" href="#" class="btn btn-large btn-block btn-primary"><%= name%></a>
+    </div>
+    <%
+    })
+    %>
+</script>
+<script type="text/html" id='partnerTemplate'>
+    <div class="span12 attr-title">伙伴数据</div>
+
+    <%
+    for(var o in partner) {
+    if(o == "id") {
+    continue;
+    } else {
+    %>
+    <div class="span2">
+        <label class="attr-label1"><%= o%>:</label>
+    </div>
+    <div class="span4 show-grid">
+        <input id="<%= o%>" type="text" value='<%= partner[o]%>' placeholder="<%= o%>" class="span3">
+    </div>
+    <%
+    }
+    }
+    %>
+
+    <div class="clearfix"></div>
+
+    <div id="saveAttr" class="span3 show-grid">
+        <a href="#" class="btn btn-large btn-block btn-primary">保存</a>
+    </div>
+</script>
+<@ include template/alert.html @>
+<script type="text/javascript">
+    var partners = <@-partners@>;
+    console.log(partners);
+    var template = $("#partnersTemplate").html();
+    $("#partners").html(_.template(template, {partners:partners}));
+</script>
+</body>
+</html>

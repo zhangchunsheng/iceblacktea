@@ -1,0 +1,48 @@
+<html>
+	<head>
+		<title>test</title>
+		<style type="text/css">
+			#div1 {
+				position: absolute;
+				top: 10px;
+				left: 10px;
+				width: 600px;
+				height: 600px;
+				background: gray;
+			}
+			
+			#div2 {
+				position: absolute;
+				top: 100px;
+				left: 100px;
+				width: 400px;
+				height: 400px;
+				background: red;
+			}
+			
+			#div3 {
+				position: absolute;
+				top: 200px;
+				left: 200px;
+				width: 200px;
+				height: 200px;
+				background: green;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="div1">div1<div id="div2">div2<div id="div3">div3</div></div></div>
+		
+		<script type="text/javascript">
+			document.getElementById("div1").addEventListener("click", function(e) {
+				alert("div1");
+			}, false);
+			document.getElementById("div2").addEventListener("click", function(e) {
+				alert("div2");
+			}, false);
+			document.getElementById("div3").addEventListener("click", function(e) {
+				alert("div3");
+			}, false);
+		</script>
+	</body>
+</html>

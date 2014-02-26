@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title><@=title@></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Loading Bootstrap -->
+    <link href="stylesheets/bootstrap.css" rel="stylesheet">
+    <link href="stylesheets/bootstrap-responsive.css" rel="stylesheet">
+    <!-- Loading Flat UI -->
+    <link href="stylesheets/flat-ui.css" rel="stylesheet">
+    <link href="stylesheets/common.css" rel="stylesheet">
+    <link rel="shortcut icon" href="images/favicon.ico">
+</head>
+<body>
+<div class="container">
+    <a href="index" class="btn btn-large btn-block btn-inverse">首页</a>
+    <h3>heros info</h3>
+
+    <div id="heros" class="row">
+
+    </div>
+
+    <div class="row">
+        <h3 class="span3">read & write redis</h3>
+        <div class="clearfix"></div>
+        <div class="span3">
+            serverId:<input id="serverId" type="text" class="span3" />
+        </div>
+        <div class="span3">
+            registerType:<input id="registerType" type="text" class="span3" />
+        </div>
+        <div class="span3">
+            loginName:<input id="loginName" type="text" class="span3" />
+        </div>
+        <div class="span3">
+            field:<input id="field" type="text" class="span3" />
+        </div>
+        <div class="span3">
+            value:<input id="value" type="text" class="span3" />
+        </div>
+        <div class="clearfix"></div>
+        <div class="span3">
+            <input id="readRedis" type="button" class="btn btn-large btn-success" value="读取" />
+        </div>
+        <div class="span3">
+            <input id="writeRedis" type="button" class="btn btn-large btn-success" value="写入" />
+        </div>
+    </div>
+
+    <div class="row">
+        <h3 class="span3">连接服务器</h3>
+        <div class="clearfix"></div>
+        <div class="span3 show-grid">
+            host:
+            <select id="host" name="host" class="select-block span3" style="display: none;">
+                <option value="192.168.1.22" selected="selected">192.168.1.22</option>
+                <option value="seaking.wozlla.com">seaking.wozlla.com</option>
+                <option value="211.155.86.237">211.155.86.237</option>
+            </select>
+        </div>
+        <div class="span3 show-grid">
+            port:
+            <select id="port" name="port" class="select-block span3" style="display: none;">
+                <option value="4014" selected="selected">4014</option>
+                <option value="6014">6014</option>
+            </select>
+        </div>
+        <div class="span3 show-grid">
+            <a href="#" id="connect" class="btn btn-large btn-block btn-success">连接</a>
+        </div>
+    </div>
+
+    <div class="row">
+        <h3 class="span3">command</h3>
+        <div class="clearfix"></div>
+        <div id="getInduInfo" class="span3 show-grid">
+            <a href="#" class="btn btn-large btn-block btn-success">获得副本信息</a>
+        </div>
+        <div id="getMonstergroup" class="span3 show-grid">
+            <a href="#" class="btn btn-large btn-block btn-success">获得副本怪物组</a>
+        </div>
+        <div id="getPartner" class="span3 show-grid">
+            <a href="#" class="btn btn-large btn-block btn-success">获得伙伴</a>
+        </div>
+        <div id="loadResource" class="span3 show-grid">
+            <a href="#" class="btn btn-large btn-block btn-success">加载资源</a>
+        </div>
+        <div id="battle" class="span3 show-grid">
+            <a href="#" class="btn btn-large btn-block btn-success">战斗</a>
+        </div>
+    </div>
+
+    <div class="row">
+        <h3 class="span3">地图系统</h3>
+        <div class="clearfix"></div>
+        <div id="enterScene" class="span3 show-grid">
+            <a href="#" class="btn btn-large btn-block btn-success">进入场景</a>
+        </div>
+        <div class="span3 show-grid">
+            sceneId:<input id="sceneId" type="text" class="span3" />
+        </div>
+        <div id="changeScene" class="span3 show-grid">
+            <a href="#" class="btn btn-large btn-block btn-success">切换场景</a>
+        </div>
+    </div>
+
+    <div class="row">
+        <h3 class="span3">任务系统</h3>
+        <div class="clearfix"></div>
+        <div id="startTask" class="span3 show-grid">
+            <a href="#" class="btn btn-large btn-block btn-success">接任务</a>
+        </div>
+        <div id="handOverTask" class="span3 show-grid">
+            <a href="#" class="btn btn-large btn-block btn-success">交任务</a>
+        </div>
+    </div>
+
+    <div class="row">
+        <h3 class="span3">阵型系统</h3>
+        <div class="clearfix"></div>
+        <div id="changeFormation" class="span3 show-grid">
+            <a href="#" class="btn btn-large btn-block btn-success">更改阵型</a>
+        </div>
+    </div>
+
+    <div class="row">
+        <h3 class="span3">背包系统</h3>
+        <div class="clearfix"></div>
+        <div id="addItem" class="span3 show-grid">
+            <a href="#" class="btn btn-large btn-block btn-success">添加物品</a>
+        </div>
+        <div id="sellItem" class="span3 show-grid">
+            <a href='#' class="btn btn-large btn-block btn-success">出售</a>
+        </div>
+        <div id="discardItem" class="span3 show-grid">
+            <a href="#" class="btn btn-large btn-block btn-success">丢弃</a>
+        </div>
+    </div>
+
+    <div class="row">
+        <h3 class="span3">商店系统</h3>
+        <div class="clearfix"></div>
+        <div id="buyItem" class="span3 show-grid">
+            <a href="#" class="btn btn-large btn-block btn-success">购买</a>
+        </div>
+    </div>
+
+    <div class="row">
+        <h3 class="span3">武器系统</h3>
+        <div class="clearfix"></div>
+        <div id="wearWeapon" class="span3 show-grid">
+            <a href="#" class="btn btn-large btn-block btn-success">装载武器</a>
+        </div>
+        <div id="unWearWeapon" class="span3 show-grid">
+            <a href="#" class="btn btn-large btn-block btn-success">卸载武器</a>
+        </div>
+        <div id="equip" class="span3 show-grid">
+            <a href="#" class="btn btn-large btn-block btn-success">装载装备</a>
+        </div>
+        <div id="unEquip" class="span3 show-grid">
+            <a href="#" class="btn btn-large btn-block btn-success">装载装备</a>
+        </div>
+        <div id="upgrade" class="span3 show-grid">
+            <a href="#" class="btn btn-large btn-block btn-success">升级装备</a>
+        </div>
+    </div>
+
+    <div class="row">
+        <h3 class="span3">副本 MG101011 E101011</h3>
+        <div class="clearfix"></div>
+        <div id="enterIndu" class="span3 show-grid">
+            <a href="#" class="btn btn-large btn-block btn-success">进入副本</a>
+        </div>
+        <div id="leaveIndu" class="span3 show-grid">
+            <a href="#" class="btn btn-large btn-block btn-success">离开副本</a>
+        </div>
+        <div class="span3">
+            eid:<input id="eid" type="text" class="span3" value="MG101011"/>
+        </div>
+        <div id="triggerEvent1" class="span3 show-grid">
+            <a href="#" class="btn btn-large btn-block btn-success">副本事件1</a>
+        </div>
+        <div id="triggerEvent2" class="span3 show-grid">
+            <a href="#" class="btn btn-large btn-block btn-success">副本事件2</a>
+        </div>
+    </div>
+
+    <div class="row">
+        <h3 class="span3">好友系统</h3>
+        <div class="clearfix"></div>
+        <div id="addFriend" class="span3 show-grid">
+            <a href="#" class="btn btn-large btn-block btn-success">添加好友</a>
+        </div>
+        <div id="delFriend" class="span3 show-grid">
+            <a href="#" class="btn btn-large btn-block btn-success">删除好友</a>
+        </div>
+        <div id="getFriend" class="span3 show-grid">
+            <a href="#" class="btn btn-large btn-block btn-success">获得好友</a>
+        </div>
+    </div>
+
+    <div class="row">
+        <h3 class="span3">竞技场系统</h3>
+        <div class="clearfix"></div>
+        <div id="arena_add" class="span3 show-grid">
+            <a href="#" class="btn btn-large btn-block btn-success">添加至竞技场</a>
+        </div>
+        <div id="arena_getRank" class="span3 show-grid">
+            <a href="#" class="btn btn-large btn-block btn-success">获得排名</a>
+        </div>
+        <div id="arena_getOpponents" class="span3 show-grid">
+            <a href="#" class="btn btn-large btn-block btn-success">获得对手</a>
+        </div>
+        <div id="arena_pk" class="span3 show-grid">
+            <a href="#" class="btn btn-large btn-block btn-success">pk</a>
+        </div>
+    </div>
+
+    <div class="row">
+        <h3 class="span3">邮箱系统</h3>
+        <div class="clearfix"></div>
+        <div id="getInbox" class="span3 show-grid">
+            <a href="#" class="btn btn-large btn-block btn-success">收件箱</a>
+        </div>
+        <div id="getOutbox" class="span3 show-grid">
+            <a href="#" class="btn btn-large btn-block btn-success">发件箱</a>
+        </div>
+        <div id="sendMail" class="span3 show-grid">
+            <a href="#" class="btn btn-large btn-block btn-success">发送邮件</a>
+        </div>
+        <div id="systemSendMail" class="span3 show-grid">
+            <a href="#" class="btn btn-large btn-block btn-success">系统发送邮件</a>
+        </div>
+        <div id="readMail" class="span3 show-grid">
+            <a href="#" class="btn btn-large btn-block btn-success">读邮件</a>
+        </div>
+        <div id="collectItem" class="span3 show-grid">
+            <a href="#" class="btn btn-large btn-block btn-success">领物品</a>
+        </div>
+        <div id="delMail" class="span3 show-grid">
+            <a href="#" class="btn btn-large btn-block btn-success">删除邮件</a>
+        </div>
+        <div id="hasNewMail" class="span3 show-grid">
+            <a href="#" class="btn btn-large btn-block btn-success">新消息</a>
+        </div>
+        <div id="systemDelR" class="span3 show-grid">
+            <a href="#" class="btn btn-large btn-block btn-success">自动清理收件</a>
+        </div>
+        <div id="systemDelS" class="span3 show-grid">
+            <a href="#" class="btn btn-large btn-block btn-success">自动清理发送</a>
+        </div>
+    </div>
+
+    <div class="row">
+        <h3 class="span3">聊天</h3>
+        <div class="clearfix"></div>
+        <div class="span6">
+            content:<textarea id="content" class="form-control span6" rows="6"></textarea>
+        </div>
+        <div class="clearfix"></div>
+        <div class="span3">
+            <input id="chat_to_all" type="button" class="btn btn-large btn-block btn-success" value="世界" />
+        </div>
+        <!--<div class="span3">
+            <input id="chat_to_system" type="button" class="btn btn-large btn-block btn-success" value="系统" />
+        </div>-->
+        <div class="span3">
+            <input id="chat_to_priv" type="button" class="btn btn-large btn-block btn-success" value="私聊" />
+        </div>
+        <div class="span3">
+            <input id="chat_to_area" type="button" class="btn btn-large btn-block btn-success" value="场景" />
+        </div>
+    </div>
+
+    <h3>character info</h3>
+
+    <div id="character" class="row">
+
+    </div>
+
+    <div id="alert"></div>
+</div>
+<!-- Modal -->
+<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h3 id="myModalLabel">create character</h3>
+    </div>
+    <div class="modal-body">
+
+    </div>
+    <div class="modal-footer">
+        <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+    </div>
+</div>
+<script src="js/socket/socket_io.js" type="text/javascript"></script>
+<script src="js/socket/build.js" type="text/javascript"></script>
+<script type="text/javascript">
+    require('boot');
+</script>
+<script src="js/lib/jquery-1.8.3.min.js"></script>
+<script src="js/lib/jquery-ui-1.10.3.custom.min.js"></script>
+<script src="js/lib/jquery.ui.touch-punch.min.js"></script>
+<script src="js/lib/bootstrap.js"></script>
+<script src="js/lib/bootstrap-select.js"></script>
+<script src="js/lib/bootstrap-switch.js"></script>
+<script src="js/lib/flatui-checkbox.js"></script>
+<script src="js/lib/flatui-radio.js"></script>
+<script src="js/lib/jquery.tagsinput.js"></script>
+<script src="js/lib/jquery.placeholder.js"></script>
+<script src="js/lib/jquery.stacktable.js"></script>
+<script type="text/javascript" src="js/lib/underscore.js"></script>
+<script src="js/lib/application.js"></script>
+<script type="text/javascript" src="js/utils/utils.js"></script>
+<script type="text/javascript" src="js/socket/socket.js"></script>
+<script type="text/javascript" src="js/character.js"></script>
+<script type="text/javascript" src="shared/model/Hero.js"></script>
+<script type="text/javascript" src="shared/formula.js"></script>
+<script type="text/html" id='herosTemplate'>
+    <%
+    _.each(heros, function(item, key, list) {
+    var name = item.name;
+    %>
+    <div class="span3 hero show-grid">
+        <a id="<%= item.id%>" href="#" class="btn btn-large btn-block btn-primary"><%= name%></a>
+    </div>
+    <%
+    })
+    %>
+    <div class="span3 show-grid">
+        <a id="createMainPlayer" href="#" role="button" class="btn">create character</a>
+    </div>
+</script>
+<@ include template/alert.html @>
+<script type="text/javascript">
+    var heros = <@-heros@>;
+    console.log(heros);
+    var template = $("#herosTemplate").html();
+    $("#heros").html(_.template(template, {heros:heros}));
+</script>
+</body>
+</html>

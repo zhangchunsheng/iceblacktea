@@ -1,0 +1,48 @@
+.choose {
+    padding: 10px;
+    width: 100%;
+}
+
+.choose-hero {
+    background-color: #57a957;
+    float: left;
+    border-radius: 10px;
+    margin: 10px;
+    width: 46%;
+    padding: 10px;
+}
+
+.battle {
+    background-color: #a8a7ba;
+    width: 100%;
+    height: 400px;
+    padding: 10px;
+}
+
+.battle-info {
+    background-color: #57a957;
+    float: left;
+    border-radius: 10px;
+    margin: 10px;
+    padding: 10px;
+    height: 300px;
+}
+
+#battle_left {
+    width: 10%;
+}
+
+#battle_center {
+    width: 65%;
+    overflow: auto;
+}
+
+#battle_right {
+    width: 10%;
+}
+
+.battleResult {
+    background-color: #a8a7ba;
+    padding: 10px;
+    margin: 10px;
+}

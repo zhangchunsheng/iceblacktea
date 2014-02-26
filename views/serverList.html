@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title><@=title@></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Loading Bootstrap -->
+    <link href="stylesheets/bootstrap.css" rel="stylesheet">
+    <link href="stylesheets/bootstrap-responsive.css" rel="stylesheet">
+    <!-- Loading Flat UI -->
+    <link href="stylesheets/flat-ui.css" rel="stylesheet">
+    <link href="stylesheets/common.css" rel="stylesheet">
+    <link rel="shortcut icon" href="images/favicon.ico">
+</head>
+<body>
+<div class="container">
+    <a href="index" class="btn btn-large btn-block btn-inverse">首页</a>
+    <h3>server list</h3>
+    <div id="serverList" class="row">
+
+    </div>
+
+    <div class="row">
+        <div id="export" class="span3 show-grid">
+            <a href="#" class="btn btn-large btn-block btn-success">写入到redis数据库</a>
+        </div>
+    </div>
+
+    <div id="server" class="row attr-row">
+
+    </div>
+
+    <div id="alert"></div>
+</div>
+<footer>
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+<script src="js/lib/jquery-1.8.3.min.js"></script>
+<script src="js/lib/jquery-ui-1.10.3.custom.min.js"></script>
+<script src="js/lib/jquery.ui.touch-punch.min.js"></script>
+<script src="js/lib/bootstrap.js"></script>
+<script src="js/lib/bootstrap-select.js"></script>
+<script src="js/lib/bootstrap-switch.js"></script>
+<script src="js/lib/flatui-checkbox.js"></script>
+<script src="js/lib/flatui-radio.js"></script>
+<script src="js/lib/jquery.tagsinput.js"></script>
+<script src="js/lib/jquery.placeholder.js"></script>
+<script src="js/lib/jquery.stacktable.js"></script>
+<script type="text/javascript" src="js/lib/underscore.js"></script>
+<script src="js/lib/application.js"></script>
+<script type="text/javascript" src="js/utils/utils.js"></script>
+<script type="text/javascript" src="js/serverList.js"></script>
+<script type="text/javascript">
+    /*_.templateSettings = {
+     interpolate : /\{\{(.+?)\}\}/g
+     };*/
+</script>
+<script type="text/html" id='serverListTemplate'>
+    <%
+    _.each(serverList, function(item, key, list) {
+    var showName = item.showName;
+    %>
+    <div class="span3 list show-grid">
+        <a id="<%= item.id%>" href="#" class="btn btn-large btn-block btn-primary"><%= showName%></a>
+    </div>
+    <%
+    })
+    %>
+</script>
+<script type="text/html" id='serverTemplate'>
+    <div class="span12 attr-title">服务器数据</div>
+
+    <div class="clearfix"></div>
+
+    <div class="span2">
+        <label class="attr-label1">name:</label>
+    </div>
+    <div class="span4 show-grid">
+        <input id="name" type="text" value="<%= server.name%>" placeholder="name" class="span3">
+    </div>
+
+    <div class="span2">
+        <label class="attr-label1">showName:</label>
+    </div>
+    <div class="span4 show-grid">
+        <input id="showName" type="text" value="<%= server.showName%>" placeholder="showName" class="span3">
+    </div>
+
+    <div class="span2">
+        <label class="attr-label1">ip:</label>
+    </div>
+    <div class="span4 show-grid">
+        <input id="ip" type="text" value="<%= server.ip%>" placeholder="ip" class="span3">
+    </div>
+
+    <div class="span2">
+        <label class="attr-label1">port:</label>
+    </div>
+    <div class="span4 show-grid">
+        <input id="port" type="text" value="<%= server.port%>" placeholder="port" class="span3">
+    </div>
+
+    <div class="span2">
+        <label class="attr-label1">connectNumber:</label>
+    </div>
+    <div class="span4 show-grid">
+        <input id="connectNumber" type="text" value="<%= server.connectNumber%>" placeholder="connectNumber" class="span3">
+    </div>
+
+    <div class="span2">
+        <label class="attr-label1">connectors:</label>
+    </div>
+    <div class="span4 show-grid">
+        <input id="connectors" type="text" value='<%= server.connectors%>' placeholder="connectors" class="span3">
+    </div>
+
+    <div class="span2">
+        <label class="attr-label1">bz:</label>
+    </div>
+    <div class="span4 show-grid">
+        <input id="bz" type="text" value="<%= server.bz%>" placeholder="bz" class="span3">
+    </div>
+
+    <div class="clearfix"></div>
+
+    <div id="saveAttr" class="span3 show-grid">
+        <a href="#" class="btn btn-large btn-block btn-primary">保存</a>
+    </div>
+</script>
+<script type="text/html" id="alertTemplate">
+    <div class="alert">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <strong>Warning!</strong><%= info%>
+    </div>
+</script>
+<script type="text/javascript">
+    var serverList = <@-serverList@>;
+    console.log(serverList);
+    var template = $("#serverListTemplate").html();
+    $("#serverList").html(_.template(template, {serverList:serverList}));
+</script>
+</body>
+</html>

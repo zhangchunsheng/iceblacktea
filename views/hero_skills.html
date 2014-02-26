@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title><@=title@></title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- Loading Bootstrap -->
+        <link href="/stylesheets/bootstrap.css" rel="stylesheet">
+        <link href="/stylesheets/bootstrap-responsive.css" rel="stylesheet">
+        <!-- Loading Flat UI -->
+        <link href="/stylesheets/flat-ui.css" rel="stylesheet">
+        <link href="/stylesheets/common.css" rel="stylesheet">
+        <link href="/stylesheets/docs.css" rel="stylesheet">
+        <link href="/stylesheets/prettify.css" rel="stylesheet">
+        <link rel="shortcut icon" href="images/favicon.ico">
+    </head>
+    <body>
+        <div class="navbar navbar-inverse navbar-fixed-top">
+            <div class="navbar-inner">
+                <div class="container">
+                    <div class="nav-collapse collapse">
+                        <ul class="nav">
+                            <li class="">
+                                <a href="/index/data">数值管理</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row-fluid">
+                <div class="span3 bs-docs-sidebar">
+                    <ul id="heros" class="nav nav-list bs-docs-sidenav affix">
+
+                    </ul>
+                </div>
+
+                <div class="span9">
+                    <div class="row" style="margin-top: 60px">
+                        <div class="span3">
+                            <h3>英雄技能数据</h3>
+                        </div>
+                        <div class="span3">
+                            <button id="createSkill" class="btn btn-primary">新建技能</button>
+                        </div>
+                    </div>
+                    <div id="skills"></div>
+                </div>
+            </div>
+            <div id="alert" style="z-index: 10000"></div>
+        </div>
+
+        <!-- Modal -->
+        <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="min-width:1000px;left:400px">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h3 id="myModalLabel">技能等级数据</h3>
+            </div>
+            <div class="modal-body" style="min-height: 400px;max-height: 400px;min-width: 1000px">
+
+            </div>
+            <div class="modal-footer">
+                <button id="save" class="btn btn-primary">保存</button>
+                <button class="btn" data-dismiss="modal" aria-hidden="true">关闭</button>
+            </div>
+        </div>
+
+        <script src="js/lib/jquery-1.8.3.min.js"></script>
+        <script src="js/lib/jquery-ui-1.10.3.custom.min.js"></script>
+        <script src="js/lib/jquery.ui.touch-punch.min.js"></script>
+        <script src="js/lib/bootstrap.js"></script>
+        <script src="js/lib/bootstrap-select.js"></script>
+        <script src="js/lib/bootstrap-switch.js"></script>
+        <script src="js/lib/flatui-checkbox.js"></script>
+        <script src="js/lib/flatui-radio.js"></script>
+        <script src="js/lib/jquery.tagsinput.js"></script>
+        <script src="js/lib/jquery.placeholder.js"></script>
+        <script src="js/lib/jquery.stacktable.js"></script>
+        <script type="text/javascript" src="js/lib/underscore.js"></script>
+        <script type="text/javascript" src="js/lib/backbone.js"></script>
+        <script src="js/lib/application.js"></script>
+        <script type="text/javascript" src="js/utils/utils.js"></script>
+        <script type="text/javascript" src="shared/data.js"></script>
+        <script type="text/javascript" src="js/hero_skills.js"></script>
+        <script type="text/javascript">
+            /*_.templateSettings = {
+             interpolate : /\{\{(.+?)\}\}/g
+             };*/
+        </script>
+        <script type="text/html" id="alertTemplate">
+            <div class="alert">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <strong>Warning!</strong><%= info%>
+            </div>
+        </script>
+        <script type="text/html" id='herosTemplate'>
+            <%
+            _.each(heros, function(item, key, list) {
+            var name = item.name;
+            if(item.id == 1) {
+            %>
+            <li id="<%= 1%>" class="active" onclick="selectHero(this)">
+                <a href="#"><i class="icon-chevron-right"></i><%= name%></a>
+            </li>
+            <%
+            } else {
+            %>
+            <li id="<%= item.id%>" onclick="selectHero(this)">
+                <a href="#"><i class="icon-chevron-right"></i><%= name%></a>
+            </li>
+            <%
+            }
+            })
+            %>
+        </script>
+        <script type="text/html" id='skillsTemplate'>
+            <div class="row skill_header">
+                <div class="span1">技能Id</div>
+                <div class="span2">技能名称</div>
+                <div class="span2">描述</div>
+                <div class="span2">技能类型</div>
+                <div class="span1">技能范围</div>
+                <div class="span2">技能分类</div>
+                <div class="span2">操作</div>
+            </div>
+            <%
+            _.each(skills, function(item, key, list) {
+            %>
+            <div id="skill_<%= item.skillId%>" class="row skill_content" onclick="getSkillLevel('<%= item.skillId%>')">
+                <div data-name="skillId" data-value="<%= item.skillId%>" class="span1"><%= item.skillId%></div>
+                <div data-name="name" data-value="<%= item.name%>" class="span2"><%= item.name%></div>
+                <div data-name="description" data-value="<%= item.description%>" class="span2"><%= item.description%></div>
+                <div data-name="type" data-value="<%= item.type%>" class="span2"><%= skillType[item.type]%></div>
+                <div data-name="scope" data-value="<%= item.scope%>" class="span1"><%= skillScope[item.scope]%></div>
+                <div data-name="skilltype" data-value="<%= item.skilltype%>" class="span2"><%= skillCategory[item.skilltype]%></div>
+                <div class="span2">
+                    <button data-id="<%= item.id%>" class="btn btn-primary" onclick="updateSkill(event, this)">修改</button>
+                </div>
+                <div id="skills_levels_<%= item.skillId%>" class="span12">
+
+                </div>
+            </div>
+            <%
+            })
+            %>
+        </script>
+        <script type="text/html" id='skillLevelsTemplate'>
+            <div class="row skilllevel_header">
+                <div data-index="1" class="span1"><%= skilllevel_header_default[1]%></div>
+                <div data-index="2" class="span1"><%= skilllevel_header_default[2]%></div>
+                <div data-index="3" class="span2"><%= skilllevel_header_default[3]%></div>
+                <div data-index="4" class="span2"><%= skilllevel_header_default[4]%></div>
+                <div data-index="5" class="span2"><%= skilllevel_header_default[5]%></div>
+                <div data-index="6" class="span2"><%= skilllevel_header_default[6]%></div>
+                <div data-index="7" class="span2">
+                    操作
+                    <button data-skillId="<%= skillId%>" data-name="createSkillLevel" class="btn btn-primary" onclick="addSkillLevel(event, this)">新建技能等级</button>
+                </div>
+            </div>
+            <%
+            _.each(skillLevels, function(item, key, list) {
+            %>
+            <div data-id="<%= item.id%>" class="row skilllevel_content" onclick="updateSkillLevel(event, this)">
+                <div class="span1"><%= item.skillId%></div>
+                <div class="span1"><%= item.level%></div>
+                <div class="span2 wrap"><%= item.description%></div>
+                <div class="span2 wrap"><%= item.speed%></div>
+                <div class="span2 wrap"><%= item.effects%></div>
+                <div class="span2 wrap"><%= item.requirement%></div>
+                <div class="span2">
+                    <button data-id="<%= item.id%>" class="btn btn-primary" onclick="updateSkillLevel(event, this)">修改</button>
+                </div>
+            </div>
+            <%
+            })
+            %>
+        </script>
+        <script type="text/javascript">
+            var heros = <@-heros@>;
+            var skill_attrs = <@-skill_attrs@>;
+            console.log(heros);
+            var template = $("#herosTemplate").html();
+            $("#heros").html(_.template(template, {heros:heros}));
+        </script>
+    </body>
+</html>

@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title><@=title@></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Loading Bootstrap -->
+    <link href="stylesheets/bootstrap.css" rel="stylesheet">
+    <link href="stylesheets/bootstrap-responsive.css" rel="stylesheet">
+    <!-- Loading Flat UI -->
+    <link href="stylesheets/flat-ui.css" rel="stylesheet">
+    <link href="stylesheets/common.css" rel="stylesheet">
+    <link rel="shortcut icon" href="images/favicon.ico">
+</head>
+<body>
+<div class="container">
+    <a href="index" class="btn btn-large btn-block btn-inverse">首页</a>
+    <h3>calculate hero's attribute</h3>
+    <div id="heros" class="row">
+
+    </div>
+
+    <div class="row">
+        <div id="export" class="span3 show-grid">
+            <a href="#" class="btn btn-large btn-block btn-success">导出</a>
+        </div>
+        <div id="exportJson" class="span3 show-grid">
+            <a href="#" class="btn btn-large btn-block btn-success">导出Json对象</a>
+        </div>
+    </div>
+
+    <div id="hero" class="row attr-row">
+
+    </div>
+
+    <div class="row choose-row">
+        <div class="span12 attr-title">所选英雄</div>
+        <div class="span2">
+            <label class="choose-label">select hero：</label>
+        </div>
+        <div class="span4">
+            <div class="control-group success">
+                <input id="selectHero" type="text" value="Disabled" disabled="disabled" class="span3">
+            </div>
+        </div>
+
+        <div class="span2">
+            <label class="choose-label">choose level：</label>
+        </div>
+        <div class="span4">
+            <select id="herolevel" name="herolevel" value="X-Men" class="select-block span3" style="display: none;">
+                <@ for(var i = 0; i < 10 ; i++) {@>
+                <@ if(i == 0) { @>
+                <option value="<@= i+1 @>" selected="selected"><@= i+1 @></option>
+                <@ } else { @>
+                <option value="<@= i+1 @>"><@= i+1 @></option>
+                <@ } @>
+                <@ } @>
+            </select>
+        </div>
+
+        <div id="calculate" class="span3 show-grid">
+            <a href="#" class="btn btn-large btn-block btn-primary">calculate</a>
+        </div>
+        <div id="alert"></div>
+    </div>
+
+    <div id="attributes" class="span11 todo mrm">
+
+    </div>
+</div>
+<footer>
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+<script src="js/lib/jquery-1.8.3.min.js"></script>
+<script src="js/lib/jquery-ui-1.10.3.custom.min.js"></script>
+<script src="js/lib/jquery.ui.touch-punch.min.js"></script>
+<script src="js/lib/bootstrap.js"></script>
+<script src="js/lib/bootstrap-select.js"></script>
+<script src="js/lib/bootstrap-switch.js"></script>
+<script src="js/lib/flatui-checkbox.js"></script>
+<script src="js/lib/flatui-radio.js"></script>
+<script src="js/lib/jquery.tagsinput.js"></script>
+<script src="js/lib/jquery.placeholder.js"></script>
+<script src="js/lib/jquery.stacktable.js"></script>
+<script type="text/javascript" src="js/lib/underscore.js"></script>
+<script src="js/lib/application.js"></script>
+<script type="text/javascript" src="js/utils/utils.js"></script>
+<script type="text/javascript" src="js/hero.js"></script>
+<script type="text/javascript" src="shared/model/Hero.js"></script>
+<script type="text/javascript" src="shared/formula.js"></script>
+<script type="text/javascript">
+    /*_.templateSettings = {
+        interpolate : /\{\{(.+?)\}\}/g
+    };*/
+</script>
+<script type="text/html" id='herosTemplate'>
+    <%
+        _.each(heros, function(item, key, list) {
+            var name = item.name;
+    %>
+    <div class="span3 hero show-grid">
+        <a id="<%= item.id%>" href="#" class="btn btn-large btn-block btn-primary"><%= name%></a>
+    </div>
+    <%
+        })
+    %>
+</script>
+<script type="text/html" id='heroTemplate'>
+    <div class="span12 attr-title">影响属性数值</div>
+    <div class="span1">
+        <label class="attr-label">type:</label>
+    </div>
+    <div class="span4 show-grid">
+        <select id="herotype" name="herotype" value="X-Men" class="select-block span3" style="display: none;">
+            <%
+                if(hero.type == 0) {
+            %>
+            <option value="0" selected="selected">请选择</option>
+            <%
+                } else {
+            %>
+            <option value="0">请选择</option>
+            <%
+                }
+            %>
+
+            <%
+            if(hero.type == 1) {
+            %>
+            <option value="1" selected="selected">DPS</option>
+            <%
+            } else {
+            %>
+            <option value="1">DPS</option>
+            <%
+            }
+            %>
+
+            <%
+            if(hero.type == 2) {
+            %>
+            <option value="2" selected="selected">tank</option>
+            <%
+            } else {
+            %>
+            <option value="2">tank</option>
+            <%
+            }
+            %>
+        </select>
+    </div>
+
+    <div class="clearfix"></div>
+
+    <div class="span2">
+        <label class="attr-label1">photo:</label>
+    </div>
+    <div class="span4 show-grid">
+        <input id="photo" type="text" value="<%= hero.photo%>" placeholder="photo" class="span3">
+    </div>
+
+    <div class="span2">
+        <label class="attr-label1">XP needed:</label>
+    </div>
+    <div class="span4 show-grid">
+        <input id="xpNeeded" type="text" value="<%= hero.xpNeeded%>" placeholder="XP needed" class="span3">
+    </div>
+
+    <div class="span2">
+        <label class="attr-label1">Level fill rate:</label>
+    </div>
+    <div class="span4 show-grid">
+        <input id="levelFillRate" type="text" value="<%= hero.levelFillRate%>" placeholder="Level fill rate" class="span3">
+    </div>
+
+    <div class="span2">
+        <label class="attr-label1">HP:</label>
+    </div>
+    <div class="span4 show-grid">
+        <input id="hp" type="text" value="<%= hero.hp%>" placeholder="HP" class="span3">
+    </div>
+
+    <div class="span2">
+        <label class="attr-label1">HP fill rate:</label>
+    </div>
+    <div class="span4 show-grid">
+        <input id="hpFillRate" type="text" value="<%= hero.hpFillRate%>" placeholder="HP fill rate" class="span3">
+    </div>
+
+    <div class="span2">
+        <label class="attr-label1">Attack:</label>
+    </div>
+    <div class="span4 show-grid">
+        <input id="attack" type="text" value="<%= hero.attack%>" placeholder="Attack" class="span3">
+    </div>
+
+    <div class="span2">
+        <label class="attr-label1">Att level up rate:</label>
+    </div>
+    <div class="span4 show-grid">
+        <input id="attLevelUpRate" type="text" value="<%= hero.attLevelUpRate%>" placeholder="Att level up rate" class="span3">
+    </div>
+
+    <div class="span2">
+        <label class="attr-label1">Defense:</label>
+    </div>
+    <div class="span4 show-grid">
+        <input id="defense" type="text" value="<%= hero.defense%>" placeholder="Defense" class="span3">
+    </div>
+
+    <div class="span2">
+        <label class="attr-label1">Def level up rate:</label>
+    </div>
+    <div class="span4 show-grid">
+        <input id="defLevelUpRate" type="text" value="<%= hero.defLevelUpRate%>" placeholder="Def level up rate" class="span3">
+    </div>
+
+    <div class="span2">
+        <label class="attr-label1">Focus:</label>
+    </div>
+    <div class="span4 show-grid">
+        <input id="focus" type="text" value="<%= hero.focus%>" placeholder="Focus" class="span3">(0-0)
+    </div>
+
+    <div class="span2">
+        <label class="attr-label1">Focus max increment:</label>
+    </div>
+    <div class="span4 show-grid">
+        <input id="focusMaxIncrement" type="text" value="<%= hero.focusMaxIncrement%>" placeholder="Focus max increment" class="span3">
+    </div>
+
+    <div class="span2">
+        <label class="attr-label1">Speed level:</label>
+    </div>
+    <div class="span4 show-grid">
+        <input id="speedLevel" type="text" value="<%= hero.speedLevel%>" placeholder="Speed level" class="span3">(0-0)
+    </div>
+
+    <div class="span2">
+        <label class="attr-label1">Speed:</label>
+    </div>
+    <div class="span4 show-grid">
+        <input id="speed" type="text" value="<%= hero.speed%>" placeholder="Speed" class="span3">(0-0)
+    </div>
+
+    <div class="span2">
+        <label class="attr-label1">Speed max increment:</label>
+    </div>
+    <div class="span4 show-grid">
+        <input id="speedMaxIncrement" type="text" value="<%= hero.speedMaxIncrement%>" placeholder="Speed max increment" class="span3">
+    </div>
+
+    <div class="span2">
+        <label class="attr-label1">Dodge:</label>
+    </div>
+    <div class="span4 show-grid">
+        <input id="dodge" type="text" value="<%= hero.dodge%>" placeholder="Dodge" class="span3">(0-0)
+    </div>
+
+    <div class="span2">
+        <label class="attr-label1">Dodge max increment:</label>
+    </div>
+    <div class="span4 show-grid">
+        <input id="dodgeMaxIncrement" type="text" value="<%= hero.dodgeMaxIncrement%>" placeholder="Dodge max increment" class="span3">
+    </div>
+
+    <div class="span2">
+        <label class="attr-label1">Critical hit:</label>
+    </div>
+    <div class="span4 show-grid">
+        <input id="criticalHit" type="text" value="<%= hero.criticalHit%>" placeholder="Critical hit" class="span3">(0-0)
+    </div>
+
+    <div class="span2">
+        <label class="attr-label1">crit hit max increment:</label>
+    </div>
+    <div class="span4 show-grid">
+        <input id="critHitMaxIncrement" type="text" value="<%= hero.critHitMaxIncrement%>" placeholder="crit hit max increment" class="span3">
+    </div>
+
+    <div class="span2">
+        <label class="attr-label1">crit damage:</label>
+    </div>
+    <div class="span4 show-grid">
+        <input id="critDamage" type="text" value="<%= hero.critDamage%>" placeholder="crit damage" class="span3">(0-0)
+    </div>
+
+    <div class="span2">
+        <label class="attr-label1">crit damage max increment:</label>
+    </div>
+    <div class="span4 show-grid">
+        <input id="critDamageMaxIncrement" type="text" value="<%= hero.critDamageMaxIncrement%>" placeholder="crit damage max increment" class="span3">
+    </div>
+
+    <div class="span2">
+        <label class="attr-label1">block:</label>
+    </div>
+    <div class="span4 show-grid">
+        <input id="block" type="text" value="<%= hero.block%>" placeholder="block" class="span3">(0-0)
+    </div>
+
+    <div class="span2">
+        <label class="attr-label1">block max increment:</label>
+    </div>
+    <div class="span4 show-grid">
+        <input id="blockMaxIncrement" type="text" value="<%= hero.blockMaxIncrement%>" placeholder="block max increment" class="span3">
+    </div>
+
+    <div class="span2">
+        <label class="attr-label1">counter:</label>
+    </div>
+    <div class="span4 show-grid">
+        <input id="counter" type="text" value="<%= hero.counter%>" placeholder="counter" class="span3">(0-0)
+    </div>
+
+    <div class="span2">
+        <label class="attr-label1">counter max increment:</label>
+    </div>
+    <div class="span4 show-grid">
+        <input id="counterMaxIncrement" type="text" value="<%= hero.counterMaxIncrement%>" placeholder="counter max increment" class="span3">
+    </div>
+
+    <div class="clearfix"></div>
+
+    <div id="saveAttr" class="span3 show-grid">
+        <a href="#" class="btn btn-large btn-block btn-primary">保存</a>
+    </div>
+</script>
+<script type="text/html" id="alertTemplate">
+    <div class="alert">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <strong>Warning!</strong><%= info%>
+    </div>
+</script>
+<script type="text/html" id="newHeroTemplate">
+    <ul>
+        <li>xp need:<div><%= hero.xpNeeded%></div></li>
+        <li>Accumulated xp:<div><%= hero.accumulated_xp%></div></li>
+        <li>hp:<div><%= hero.hp%></div></li>
+        <li>Attack:<div><%= hero.attack%></div></li>
+        <li>Defense:<div><%= hero.defense%></div></li>
+        <li>Focus:<div><%= hero.focus%></div></li>
+        <li>Speed level:<div><%= hero.speedLevel%></div></li>
+        <li>Speed:<div><%= hero.speed%></div></li>
+        <li>Dodge:<div><%= hero.dodge%></div></li>
+        <li>Critical hit:<div><%= hero.criticalHit%></div></li>
+        <li>crit damage:<div><%= hero.critDamage%></div></li>
+        <li>block:<div><%= hero.block%></div></li>
+        <li>counter:<div><%= hero.counter%></div></li>
+    </ul>
+</script>
+<script type="text/javascript">
+    var heros = <@-heros@>;
+    console.log(heros);
+    var template = $("#herosTemplate").html();
+    $("#heros").html(_.template(template, {heros:heros}));
+</script>
+</body>
+</html>

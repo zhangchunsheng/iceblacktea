@@ -1,0 +1,118 @@
+<@ include template/head.html @>
+<h3><@=name@></h3>
+
+<div class="row">
+    <div class="span12 show-grid">
+        <form id="form_upload" method="post" enctype="application/x-www-form+xml" class="" action="">
+            <div>
+                <input node-type="inputArea" node-name="fileInput" type="text" class="span3" placeholder="上传文件" />
+                <input type="button" class="span1 btn btn-warning" style="margin-top: -10px" value="上传" />
+                <input class="span5 btn btn-success" node-type="fileArea" required="required" name="jsonfile" style="position: absolute; left: 0px; opacity: 0" type="file" accept="*/*" />
+            </div>
+            <div>
+                <input type="submit" class="btn btn-large btn-block btn-success" value="提交" node-type="btnSubmit" />
+                <input type="button" class="btn btn-large btn-block btn-success" value="取消" node-type="btnCancel" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="row">
+    <div id="import" class="span3 show-grid">
+        <a href="#" class="btn btn-large btn-block btn-success">导入数据</a>
+    </div>
+    <div id="export" class="span3 show-grid">
+        <a href="#" class="btn btn-large btn-block btn-success">导出数据</a>
+    </div>
+    <div id="exportJson" class="span3 show-grid">
+        <a href="#" class="btn btn-large btn-block btn-success">导出json对象</a>
+    </div>
+</div>
+
+<div id="objects" class="row">
+
+</div>
+
+<div id="object" class="row attr-row">
+
+</div>
+
+<div id="alert"></div>
+</div>
+<!-- Modal -->
+<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h3 id="myModalLabel">create <@=title@></h3>
+    </div>
+    <div class="modal-body">
+
+    </div>
+    <div class="modal-footer">
+        <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+    </div>
+</div>
+<script src="js/socket/socket_io.js" type="text/javascript"></script>
+<script src="js/socket/build.js" type="text/javascript"></script>
+<script type="text/javascript">
+    require('boot');
+</script>
+<@ include template/script.html @>
+<script type="text/javascript" src="js/lib/jquery.form.js"></script>
+<script type="text/javascript" src="js/utils/utils.js"></script>
+<script type="text/javascript" src="js/socket/socket.js"></script>
+<script type="text/javascript">
+    var saveRoute = "<@=saveRoute@>";
+    var exportRoute = "<@=exportRoute@>";
+</script>
+<script type="text/javascript" src="js/object.js"></script>
+<script type="text/javascript" src="shared/model/Hero.js"></script>
+<script type="text/javascript" src="shared/formula.js"></script>
+<script type="text/javascript" src="js/upload.js"></script>
+<script type="text/html" id='objectsTemplate'>
+    <%
+    _.each(objects, function(item, key, list) {
+    var name = item.name || item.eventId || item.page + "_" + item.pointId;
+    %>
+    <div class="span3 hero show-grid">
+        <a id="<%= item.id%>" href="#" class="btn btn-large btn-block btn-primary"><%= name%></a>
+    </div>
+    <%
+    })
+    %>
+</script>
+<script type="text/html" id='objectTemplate'>
+    <div class="span12 attr-title"><@=dataName@></div>
+
+    <%
+    for(var o in object) {
+    if(o == "id") {
+    continue;
+    } else {
+    %>
+    <div class="span2">
+        <label class="attr-label1"><%= o%>:</label>
+    </div>
+    <div class="span4 show-grid">
+        <input id="<%= o%>" type="text" value='<%= object[o]%>' placeholder="<%= o%>" class="span3">
+    </div>
+    <%
+    }
+    }
+    %>
+
+    <div class="clearfix"></div>
+
+    <div id="saveAttr" class="span3 show-grid">
+        <a href="#" class="btn btn-large btn-block btn-primary">保存</a>
+    </div>
+</script>
+<@ include template/alert.html @>
+<script type="text/javascript">
+    var objects = <@-objects@>;
+    console.log(objects);
+    var template = $("#objectsTemplate").html();
+    $("#objects").html(_.template(template, {objects:objects}));
+</script>
+</body>
+</html>

@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title><@=title@></title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <!-- Loading Bootstrap -->
+        <link href="/stylesheets/bootstrap.css" rel="stylesheet" />
+        <link href="/stylesheets/bootstrap-responsive.css" rel="stylesheet" />
+        <!-- Loading Flat UI -->
+        <link href="/stylesheets/flat-ui.css" rel="stylesheet" />
+        <link href="/stylesheets/common.css" rel="stylesheet" />
+        <link rel="stylesheet" href="/stylesheets/battle2.css" />
+        <link rel="shortcut icon" href="images/favicon.ico">
+    </head>
+    <body>
+        <div class="container">
+            <a href="/index" class="btn btn-large btn-block btn-inverse">首页</a>
+            <a href="/index/data" class="btn btn-large btn-block btn-inverse">数值管理</a>
+            <div class="choose">
+                <div class="choose-hero">
+                    <h2>己方</h2>
+                    <div id="owner_addHero" class="btn btn-large btn-primary">添加英雄</div>
+                    <div id="ownerTeam">
+
+                    </div>
+                </div>
+                <div class="choose-hero">
+                    <h2>敌方</h2>
+                    <div id="opponent_addHero" class="btn btn-large btn-primary">添加英雄</div>
+                    <div id="opponentTeam">
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="clearfix"></div>
+
+            <div class="battle">
+                <h2 style="float:left">VS</h2>
+                进行<input id="battleNum" type="text" value="10" placeholder="battleNum" class="span2">场战斗
+                <div id="battle" class="btn btn-large btn-primary" style="margin-left:20px;">战斗</div>
+                <span id="fighting">正在战斗...</span>
+                <div>
+                    <div id="battle_left" class="battle-info">
+                        己方
+                    </div>
+                    <div id="battle_center" class="battle-info">
+                        战斗结果<br/>
+                    </div>
+                    <div id="battle_right" class="battle-info">
+                        敌方
+                    </div>
+                </div>
+            </div>
+
+            <div class="clearfix"></div>
+
+            <div class="battleResult">
+                测试结果
+                <div id="battleResult">
+                    己方胜<span id="owner_winnum">0</span>场，
+                    敌方胜<span id="opponent_winnum">0</span>场，
+                    胜率：<span id="win_probability">0</span>
+                </div>
+            </div>
+        </div>
+        <script src="../js/lib/jquery-1.8.3.min.js"></script>
+        <script src="../js/lib/jquery-ui-1.10.3.custom.min.js"></script>
+        <script src="../js/lib/jquery.ui.touch-punch.min.js"></script>
+        <script src="../js/lib/bootstrap.js"></script>
+        <script src="../js/lib/bootstrap-select.js"></script>
+        <script src="../js/lib/bootstrap-switch.js"></script>
+        <script src="../js/lib/flatui-checkbox.js"></script>
+        <script src="../js/lib/flatui-radio.js"></script>
+        <script src="../js/lib/jquery.tagsinput.js"></script>
+        <script src="../js/lib/jquery.placeholder.js"></script>
+        <script src="../js/lib/jquery.stacktable.js"></script>
+        <script type="text/javascript" src="../js/lib/underscore.js"></script>
+        <script src="../js/lib/application.js"></script>
+        <script type="text/javascript" src="../js/utils/utils.js"></script>
+        <script type="text/javascript" src="../js/battle/battle2.js"></script>
+        <script type="text/javascript">
+            /*_.templateSettings = {
+             interpolate : /\{\{(.+?)\}\}/g
+             };*/
+        </script>
+        <script type="text/html" id="chooseTemplate">
+            <div class="row" style="background:#a8a7ba;margin:5px">
+                <div data-name="hero" class="span2 show-grid">
+                    选择英雄：
+                    <select data-id="selectHero" data-name="selectHero" value="0" class="select-block span3" style="display: none;">
+                        <option value="0" selected="selected">请选择</option>
+                        <%
+                        _.each(heros, function(item, key, list) {
+                        var name = item.name;
+                        %>
+                        <option value="<%= item.heroId%>"><%= name%></option>
+                        <%
+                        })
+                        %>
+                    </select>
+                </div>
+                <div data-name="level" class="span1 show-grid">
+                    选择等级：
+                    <select data-id="selectLevel" data-name="selectLevel" value="0" class="select-block span3" style="display: none;">
+                        <option value="0" selected="selected">请选择</option>
+                        <%
+                        for(var i = 1 ; i < 50 ; i++) {
+                        %>
+                        <option value="<%= i%>"><%= i%></option>
+                        <%
+                        }
+                        %>
+                    </select>
+                </div>
+                <div data-name="formationId" class="span2 show-grid">
+                    阵型位：
+                    <select data-id="selectFormationId" data-name="selectFormationId" value="0" class="select-block span3" style="display: none;">
+                        <option value="-1" selected="selected">请选择</option>
+                        <%
+                        for(var i = 0 ; i < 7 ; i++) {
+                        %>
+                        <option value="<%= i%>"><%= i%></option>
+                        <%
+                        }
+                        %>
+                    </select>
+                </div>
+                <div data-name="skillId1" class="span2 show-grid">
+                    触发技能：
+                    <select data-id="selectSkillId1" data-name="selectSkillId1" value="0" class="select-block span3" style="display: none;">
+                        <option value="0" selected="selected">请选择</option>
+                        <%
+                        _.each(skills, function(item, key, list) {
+                        var name = item.skillId + item.skillName;
+                        %>
+                        <option value="<%= item.skillId%>"><%= name%></option>
+                        <%
+                        })
+                        %>
+                    </select>
+                </div>
+                <div data-name="skillId2" class="span1 show-grid">
+                    觉醒技能：
+                    <select data-id="selectSkillId2" data-name="selectSkillId2" value="0" class="select-block span3" style="display: none;">
+                        <option value="0" selected="selected">请选择</option>
+                        <%
+                        _.each(skills, function(item, key, list) {
+                        var name = item.skillId + item.skillName;
+                        %>
+                        <option value="<%= item.skillId%>"><%= name%></option>
+                        <%
+                        })
+                        %>
+                    </select>
+                </div>
+                <div data-name="skillId3" class="span2 show-grid">
+                    主技能3：
+                    <select data-id="selectSkillId3" data-name="selectSkillId3" value="0" class="select-block span3" style="display: none;">
+                        <option value="0" selected="selected">请选择</option>
+                        <%
+                        _.each(skills, function(item, key, list) {
+                        var name = item.skillId + item.skillName;
+                        %>
+                        <option value="<%= item.skillId%>"><%= name%></option>
+                        <%
+                        })
+                        %>
+                    </select>
+                </div>
+            </div>
+        </script>
+        <script type="text/javascript">
+            var heros = <@-heros@>;
+            var skills = <@-skills@>;
+            console.log(heros);
+        </script>
+    </body>
+</html>

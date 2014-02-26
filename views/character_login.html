@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title><@=title@></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Loading Bootstrap -->
+    <link href="stylesheets/bootstrap.css" rel="stylesheet">
+    <link href="stylesheets/bootstrap-responsive.css" rel="stylesheet">
+    <!-- Loading Flat UI -->
+    <link href="stylesheets/flat-ui.css" rel="stylesheet">
+    <link href="stylesheets/common.css" rel="stylesheet">
+    <link rel="shortcut icon" href="images/favicon.ico">
+</head>
+<body>
+<div class="container">
+    <a href="index" class="btn btn-large btn-block btn-inverse">首页</a>
+    <h3>heros info</h3>
+
+    <div id="heros" class="row">
+
+    </div>
+
+    <div class="row">
+        <h3 class="span3">login</h3>
+        <div class="clearfix"></div>
+        <div class="span3">
+            registerType:<input id="registerType" type="text" class="span3" />
+        </div>
+        <div class="span3">
+            loginName:<input id="loginName" type="text" class="span3" />
+        </div>
+        <div class="span3">
+            password:<input id="password" type="text" class="span3" />
+        </div>
+        <div class="span3">
+            password_verify:<input id="password_verify" type="text" class="span3" />
+        </div>
+        <div class="clearfix"></div>
+        <div class="span3">
+            <input id="register" type="button" class="btn btn-large btn-success" value="注册" />
+        </div>
+        <div class="span3">
+            <input id="autoRegister" type="button" class="btn btn-large btn-success" value="自动注册" />
+        </div>
+        <div class="span3">
+            <input id="login" type="button" class="btn btn-large btn-success" value="登录" />
+        </div>
+    </div>
+
+    <div class="row">
+        <h3 class="span3">连接服务器</h3>
+        <div class="clearfix"></div>
+        <div class="span3 show-grid">
+            host:
+            <select id="host" name="host" class="select-block span3" style="display: none;">
+                <option value="192.168.1.22" selected="selected">192.168.1.22</option>
+                <option value="seaking.wozlla.com">seaking.wozlla.com</option>
+                <option value="211.155.86.237">211.155.86.237</option>
+            </select>
+        </div>
+        <div class="span3 show-grid">
+            port:
+            <select id="port" name="port" class="select-block span3" style="display: none;">
+                <option value="4014" selected="selected">4014</option>
+                <option value="6014">6014</option>
+            </select>
+        </div>
+        <div class="span3 show-grid">
+            <a href="#" id="connect" class="btn btn-large btn-block btn-success">连接</a>
+        </div>
+    </div>
+
+    <div class="row">
+        <h3 class="span3">角色管理</h3>
+        <div class="clearfix"></div>
+        <div class="span3">
+            nickname:<input id="nickname" type="text" class="span3" />
+        </div>
+        <div class="span3 show-grid">
+            <a id="createMainPlayer" href="#" role="button" class="btn">create character</a>
+        </div>
+    </div>
+
+    <div class="row">
+        <div id="getInduInfo" class="span3 show-grid">
+            <a href="#" class="btn btn-large btn-block btn-success">获得副本信息</a>
+        </div>
+        <div id="getMonstergroup" class="span3 show-grid">
+            <a href="#" class="btn btn-large btn-block btn-success">获得副本怪物组</a>
+        </div>
+
+        <div id="enterScene" class="span3 show-grid">
+            <a href="#" class="btn btn-large btn-block btn-success">进入场景</a>
+        </div>
+        <div class="span3 show-grid">
+            <input id="sceneId" type="text" class="span3" />
+        </div>
+        <div id="changeScene" class="span3 show-grid">
+            <a href="#" class="btn btn-large btn-block btn-success">切换场景</a>
+        </div>
+    </div>
+
+    <h3>character info</h3>
+
+    <div id="character" class="row">
+
+    </div>
+
+    <div id="alert"></div>
+</div>
+<!-- Modal -->
+<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h3 id="myModalLabel">create character</h3>
+    </div>
+    <div class="modal-body">
+
+    </div>
+    <div class="modal-footer">
+        <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+    </div>
+</div>
+<script src="js/socket/socket_io.js" type="text/javascript"></script>
+<script src="js/socket/build.js" type="text/javascript"></script>
+<script type="text/javascript">
+    require('boot');
+</script>
+<script src="js/lib/jquery-1.8.3.min.js"></script>
+<script src="js/lib/jquery-ui-1.10.3.custom.min.js"></script>
+<script src="js/lib/jquery.ui.touch-punch.min.js"></script>
+<script src="js/lib/bootstrap.js"></script>
+<script src="js/lib/bootstrap-select.js"></script>
+<script src="js/lib/bootstrap-switch.js"></script>
+<script src="js/lib/flatui-checkbox.js"></script>
+<script src="js/lib/flatui-radio.js"></script>
+<script src="js/lib/jquery.tagsinput.js"></script>
+<script src="js/lib/jquery.placeholder.js"></script>
+<script src="js/lib/jquery.stacktable.js"></script>
+<script type="text/javascript" src="js/lib/underscore.js"></script>
+<script type="text/javascript" src="js/lib/md5.js"></script>
+<script src="js/lib/application.js"></script>
+<script type="text/javascript" src="js/utils/utils.js"></script>
+<script type="text/javascript" src="js/socket/socket.js"></script>
+<script type="text/javascript" src="js/character_login.js"></script>
+<script type="text/javascript" src="shared/model/Hero.js"></script>
+<script type="text/javascript" src="shared/formula.js"></script>
+<script type="text/html" id='herosTemplate'>
+    <%
+    _.each(heros, function(item, key, list) {
+    var name = item.name;
+    %>
+    <div class="span3 hero show-grid">
+        <a id="<%= item.id%>" href="#" class="btn btn-large btn-block btn-primary"><%= name%></a>
+    </div>
+    <%
+    })
+    %>
+</script>
+<@ include template/alert.html @>
+<script type="text/javascript">
+    var heros = <@-heros@>;
+    console.log(heros);
+    var template = $("#herosTemplate").html();
+    $("#heros").html(_.template(template, {heros:heros}));
+</script>
+</body>
+</html>

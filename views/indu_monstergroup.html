@@ -1,0 +1,99 @@
+<@ include template/head.html @>
+<h3>monstergroups</h3>
+
+<div class="row">
+    <div id="import" class="span3 show-grid">
+        <a href="#" class="btn btn-large btn-block btn-success">导入数据</a>
+    </div>
+    <div id="export" class="span3 show-grid">
+        <a href="#" class="btn btn-large btn-block btn-success">导出数据</a>
+    </div>
+    <div id="exportJson" class="span3 show-grid">
+        <a href="#" class="btn btn-large btn-block btn-success">导出json对象</a>
+    </div>
+</div>
+
+<div id="monstergroups" class="row">
+
+</div>
+
+<div id="monstergroup" class="row attr-row">
+
+</div>
+
+<div id="alert"></div>
+</div>
+<!-- Modal -->
+<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h3 id="myModalLabel">create monster</h3>
+    </div>
+    <div class="modal-body">
+
+    </div>
+    <div class="modal-footer">
+        <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+    </div>
+</div>
+<script src="js/socket/socket_io.js" type="text/javascript"></script>
+<script src="js/socket/build.js" type="text/javascript"></script>
+<script type="text/javascript">
+    require('boot');
+</script>
+<@ include template/script.html @>
+<script type="text/javascript" src="js/utils/utils.js"></script>
+<script type="text/javascript" src="js/socket/socket.js"></script>
+<script type="text/javascript" src="js/indu_monstergroup.js"></script>
+<script type="text/javascript" src="shared/model/Hero.js"></script>
+<script type="text/javascript" src="shared/formula.js"></script>
+<script type="text/html" id='monstergroupsTemplate'>
+    <%
+    _.each(monstergroups, function(item, key, list) {
+    var name = item.showName;
+    if(name == "") {
+        name = item.mgid;
+    }
+    %>
+    <div class="span3 hero show-grid">
+        <a id="<%= item.id%>" href="#" class="btn btn-large btn-block btn-primary"><%= name%></a>
+    </div>
+    <%
+    })
+    %>
+</script>
+<script type="text/html" id='monstergroupTemplate'>
+    <div class="span12 attr-title">怪物组数据</div>
+
+    <%
+    for(var o in monstergroup) {
+    if(o == "id") {
+    continue;
+    } else {
+    %>
+    <div class="span2">
+        <label class="attr-label1"><%= o%>:</label>
+    </div>
+    <div class="span4 show-grid">
+        <input id="<%= o%>" type="text" value='<%= monstergroup[o]%>' placeholder="<%= o%>" class="span3">
+    </div>
+    <%
+    }
+    }
+    %>
+
+    <div class="clearfix"></div>
+
+    <div id="saveAttr" class="span3 show-grid">
+        <a href="#" class="btn btn-large btn-block btn-primary">保存</a>
+    </div>
+</script>
+<@ include template/alert.html @>
+<script type="text/javascript">
+    var monstergroups = <@-monstergroups@>;
+    console.log(monstergroups);
+    var template = $("#monstergroupsTemplate").html();
+    $("#monstergroups").html(_.template(template, {monstergroups:monstergroups}));
+</script>
+</body>
+</html>

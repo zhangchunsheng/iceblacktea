@@ -1,0 +1,52 @@
+<@ include ../template/head.html @>
+<h3>GM命令</h3>
+
+<div class="row">
+    <h3 class="span3">gm</h3>
+    <div class="clearfix"></div>
+
+    <div>
+        <label for="host">host:</label>
+        <select id="host">
+            <option value="192.168.1.22">内网</option>
+            <option value="211.155.86.237">美团</option>
+        </select>
+        <label for="port">port:</label>
+        <select id="port">
+            <option value="4011">4011</option>
+            <option value="6011">6011</option>
+        </select>
+    </div>
+
+    <div class="span3">
+        nickname:<input id="nickname" type="text" class="span3" />
+    </div>
+    <div class="span3">
+        <input id="clearPackage" type="button" class="btn btn-large btn-success" value="清空背包" />
+    </div>
+</div>
+
+<div id="alert"></div>
+</div>
+<!-- Modal -->
+<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h3 id="myModalLabel">create gm</h3>
+    </div>
+    <div class="modal-body">
+
+    </div>
+    <div class="modal-footer">
+        <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+    </div>
+</div>
+
+<@ include ../template/script.html @>
+<script type="text/javascript" src="/js/utils/utils.js"></script>
+<script type="text/javascript" src="/shared/formula.js"></script>
+<script src="/js/gm/gm.js" type="text/javascript"></script>
+
+<@ include ../template/alert.html @>
+</body>
+</html>

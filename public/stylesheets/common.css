@@ -1,0 +1,116 @@
+.show-grid {
+     margin-top: 10px;
+     margin-bottom: 20px;
+ }
+
+.attr-label {
+    float: left;
+    line-height: 60px;
+    font-size: 20px;
+}
+
+.attr-label1 {
+    float: left;
+    line-height: 60px;
+    font-size: 12px;
+}
+
+.attr-title {
+    font-size: 26px;
+    text-align: center;
+}
+
+.attr-row {
+    background-color: #415b76;
+    color: #ffffff;
+    margin-bottom: 20px;
+}
+
+.choose-row {
+    background-color: #317649;
+    color: #ffffff;
+    margin-bottom: 20px;
+}
+
+.choose-label {
+    float: left;
+    line-height: 40px;
+    font-size: 20px;
+}
+
+.todo li div {
+    display: inline;
+    color: #ffffff;
+}
+
+#alert {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    display: none;
+}
+
+.player {
+    position: relative;
+    top: 60px;
+    left: 0px;
+    width: 20px;
+}
+
+.enemy {
+    position: relative;
+    top: 70px;
+    left: 0px;
+    width: 20px;
+}
+
+.timeline {
+    position: relative;
+    top: 60px;
+}
+
+.skill_header {
+    background-color: #1f8bc3;
+    margin-top: 10px;
+}
+
+.skill_header [class*="span"] {
+    text-align: center;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    min-height: 40px;
+    line-height: 40px;
+}
+
+.skill_content {
+    background-color: #a8a7ba;
+    margin-top: 10px;
+}
+
+.skill_content [class*="span"] {
+    text-align: center;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+}
+
+.skilllevel_header {
+    background-color: #40974a;
+    margin-top: 10px;
+}
+
+.skilllevel_content {
+    background-color: #7d8897;
+    margin-top: 10px;
+}
+
+.show-grid-row {
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+.wrap {
+    word-wrap: break-word;
+    word-break: normal;
+}

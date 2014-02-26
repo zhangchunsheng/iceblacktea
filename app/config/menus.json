@@ -1,0 +1,207 @@
+{
+    "menus": [{
+        "id": "index",
+        "name": "首页",
+        "href": "/index",
+        "menus": [{
+            "name": "系统",
+            "menus": [{
+                "name": "游戏管理",
+                "href": "#"
+            }, {
+                "name": "权限管理",
+                "href": "#"
+            }, {
+                "name": "菜单管理",
+                "href": "#"
+            }, {
+                "name": "用户管理",
+                "href": "#"
+            }]
+        }, {
+            "name": "角色管理",
+            "menus": [{
+                "name": "常用功能",
+                "href": "/index/character"
+            }]
+        }, {
+            "name": "场景管理",
+            "menus": [{
+                "name": "常用功能",
+                "href": "/index/scene"
+            }]
+        }, {
+            "name": "GM命令",
+            "menus": [{
+                "name": "常用功能",
+                "href": "/gm/index"
+            }]
+        }]
+    }, {
+        "id": "data",
+        "name": "数值管理",
+        "href": "/index/data",
+        "menus": [{
+            "name": "角色系统",
+            "menus": [{
+                "name": "昵称管理",
+                "href": "/character_nickname"
+            }, {
+                "name": "角色管理",
+                "href": "/character"
+            }, {
+                "name": "角色登录",
+                "href": "/character_login"
+            }, {
+                "name": "伙伴管理",
+                "href": "/partner"
+            }]
+        }, {
+            "name": "城市系统",
+            "menus": [{
+                "name": "城市管理",
+                "href": "/city"
+            }, {
+                "name": "NPC管理",
+                "href": "/npc"
+            }]
+        }, {
+            "name": "战斗系统",
+            "menus": [{
+                "name": "英雄数值",
+                "href": "/hero"
+            }, {
+                "name": "英雄数值2",
+                "href": "/heroV2"
+            }, {
+                "name": "战斗模拟",
+                "href": "/battle"
+            }, {
+                "name": "战斗模拟2",
+                "href": "/battle/battle2"
+            }, {
+                "name": "怪物管理",
+                "href": "/monster"
+            }]
+        }, {
+            "name": "商店系统",
+            "menus": [{
+                "name": "商店管理",
+                "href": "/shop"
+            }]
+        }, {
+            "name": "背包系统",
+            "menus": [{
+                "name": "物品管理",
+                "href": "#"
+            }]
+        }, {
+            "name": "任务系统",
+            "menus": [{
+                "name": "任务管理",
+                "href": "/task"
+            }]
+        }, {
+            "name": "副本系统",
+            "menus": [{
+                "name": "副本管理",
+                "href": "/indu"
+            }, {
+                "name": "副本怪物组管理",
+                "href": "/indu_monstergroup"
+            }, {
+                "name": "副本事件管理",
+                "href": "/indu_event"
+            }]
+        }, {
+            "name": "商店系统",
+            "menus": [{
+                "name": "商店管理",
+                "href": "/shop"
+            }, {
+                "name": "道具管理",
+                "href": "/item"
+            }]
+        }, {
+            "name": "技能系统",
+            "menus": [{
+               "name": "英雄技能管理",
+                "href": "/hero_skills"
+            }, {
+                "name": "技能管理",
+                "href": "/skill"
+            }, {
+                "name": "技能属性管理",
+                "href": "/skill_attr"
+            }, {
+                "name": "技能列表",
+                "href": "/skill_list"
+            }, {
+                "name": "技能效果",
+                "href": "/skill_effect"
+            }, {
+                "name": "技能管理V2",
+                "href": "/skillV2"
+            }]
+        }, {
+            "name": "阵型系统",
+            "menus": [{
+                "name": "阵型管理",
+                "href": "/formation"
+            }, {
+                "name": "阵型升级管理",
+                "href": "/formationUpgrade"
+            }, {
+                "name": "阵法管理",
+                "href": "/tactical"
+            }]
+        }, {
+            "name": "属性系统",
+            "menus": [{
+                "name": "命魂管理",
+                "href": "/ghost"
+            }, {
+                "name": "资质管理",
+                "href": "/aptitude"
+            }, {
+                "name": "祭坛管理",
+                "href": "/altar"
+            }, {
+                "name": "兑换管理",
+                "href": "/altar_exchange"
+            }, {
+                "name": "融合管理",
+                "href": "/soulFusion"
+            }]
+        }, {
+            "name": "武器装备系统",
+            "menus": [{
+                "name": "武器装备管理",
+                "href": "/equipment"
+            }, {
+                "name": "武器装备管理2",
+                "href": "/equipmentV2"
+            }, {
+                "name": "武器装备升级管理",
+                "href": "/equipmentLevelup"
+            }, {
+                "name": "打造管理",
+                "href": "/forgeUpgrade"
+            }, {
+                "name": "宝石管理",
+                "href": "/diamond"
+            }]
+        }, {
+            "name": "服务器管理",
+            "menus": [{
+                "name": "服务器列表",
+                "href": "/serverList"
+            }]
+        }]
+    }, {
+        "id": "about",
+        "name": "关于",
+        "href": "/about",
+        "menus": []
+    }]
+}
