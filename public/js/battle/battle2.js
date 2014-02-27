@@ -191,6 +191,9 @@ function addContent(data) {
         if(data.battleData[i].awakeSkill) {
             html += "触发觉醒技能，";
         }
+        if(data.battleData[i].fightData) {
+            formatterFighData(data.battleData[i].fightData, html);
+        }
         if(data.battleData[i].targetType == 1) {
             html += "作用目标己方，";
 
