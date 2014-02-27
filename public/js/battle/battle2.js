@@ -330,166 +330,165 @@ function formatterFighData(data, html) {
     var attackTeam;
     var defenseTeam;
     var player;
-    for(var i = 0 ; i < data.battleData.length ; i++) {
-        attackerId = data.battleData[i].attacker;
-        attackerFid = data.battleData[i].attackerFid;
-        target = data.battleData[i].target;
-        attackTeam = data.battleData[i].attackTeam;
-        defenseTeam = data.battleData[i].defenseTeam;
 
-        attacker = getHeroInfo(attackerId);
+    attackerId = data.attacker;
+    attackerFid = data.attackerFid;
+    target = data.target;
+    attackTeam = data.attackTeam;
+    defenseTeam = data.defenseTeam;
 
-        html += "攻击者：" + attacker.name + "，";
-        if(data.battleData[i].poison) {
-            html += "中毒，";
-        }
-        if(data.battleData[i].ice) {
-            html += "冰冻，";
-        }
-        if(data.battleData[i].silence) {
-            html += "沉默，";
-        }
-        if(data.battleData[i].stasis) {
-            html += "停滞，";
-        }
-        html += "血量：" + data.battleData[i].hp + "，";
-        if(data.battleData[i].attackType == 2) {
-            html += "触发技能，";
-        }
-        if(data.battleData[i].addAttack) {
-            html += "增加攻击力" + data.battleData[i].addAttack + "，";
-        }
-        if(data.battleData[i].addDamage) {
-            html += "伤害提升" + (data.battleData[i].addDamage * 100) + "%，";
-        }
-        if(data.battleData[i].addSunderArmor) {
-            html += "增加破甲" + data.battleData[i].addSunderArmor + "，";
-        }
-        if(data.battleData[i].addHp) {
-            html += "攻击吸血，加" + data.battleData[i].addHp + "点血，";
-        }
-        if(data.battleData[i].reduceAttack) {
-            html += "降低" + data.battleData[i].reduceAttack + "攻击力，";
-        }
-        if(data.battleData[i].promoteHp) {
-            html += "提升生命值" + data.battleData[i].promoteHp + "，";
-        }
-        if(data.battleData[i].awakeSkill) {
-            html += "触发觉醒技能，";
-        }
-        if(data.battleData[i].targetType == 1) {
-            html += "作用目标己方，";
+    attacker = getHeroInfo(attackerId);
 
-            for(var j = 0 ; j < target.length ; j++) {
-                defense = getHeroInfo(target[j].id);
-                if(target[j].action == 5) {
-                    html += "友方：" + defense.name + "加血，";
-                    html += "加" + target[j].addHp + "点血，当前" + target[j].hp + "点血量";
-                }
-            }
-        } else {
-            html += "作用目标敌方，";
-            /*if(data.battleData[i].damageType == 1) {
-             html += "普通攻击，";
-             } else if(data.battleData[i].damageType == 2) {
-             html += "暴击，";
-             }*/
-            html + "对敌方" + target.length + "个单位造成伤害";
-            /**
-             * beHitted: 1,
-             dodge: 2,
-             counter: 3,
-             block: 4
-             */
-            for(var j = 0 ; j < target.length ; j++) {
-                defense = getHeroInfo(target[j].id);
-                if(target[j].damageType == 1) {
-                    html += "普通攻击，";
-                } else if(target[j].damageType == 2) {
-                    html += "暴击，";
-                } else if(target[j].damageType == 3) {
-                    html += "额外伤害，";
-                } else if(target[j].damageType == 4) {
-                    html += "溅射伤害，";
-                }
-                html += "防守者：" + defense.name + "，";
-                if(target[j].assimilate) {
-                    html += "吸收伤害，";
-                    for(var k = 0 ; k < target[j].assimilate.length ; k++) {
-                        player = getHeroInfo(parseInt(target[j].assimilate[k].playerId));
-                        html += "吸收" + player.name + "的" + target[j].assimilate[k].damage + "点伤害，";
-                    }
-                }
-                if(target[j].ignoreSkill) {
-                    html += "忽略技能，";
-                }
-                if(target[j].poison) {
-                    html += "中毒，";
-                }
-                if(target[j].triggerSkill) {
-                    html += "防守者触发技能，";
-                }
-                if(target[j].awakeSkill) {
-                    html += "防守者触发觉醒技能，";
-                }
-                if(target[j].reduceDamage) {
-                    html += "减伤：" + target[j].reduceDamage + "，";
-                }
-                if(target[j].addDefense) {
-                    html += "增加护甲：" + target[j].addDefense + "，";
-                }
-                if(target[j].transfer) {
-                    html += "转移伤害，";
-                }
-                if(target[j].addMaxHp) {
-                    html += "增加生命上限：" + target[j].addMaxHp + "，";
-                }
-                if(target[j].addDodge) {
-                    html += "增加闪避：" + target[j].addDodge + "，";
-                }
-                if(target[j].action == 1) {
-                    html += "被击中，";
-                    html += "减" + target[j].reduceBlood + "点血，当前" + target[j].hp + "点血量";
-                } else if(target[j].action == 2) {
-                    html += "闪避，";
-                    html += "减" + target[j].reduceBlood + "点血，当前" + target[j].hp + "点血量";
-                } else if(target[j].action == 4) {
-                    html += "格挡，";
-                    html += "减" + target[j].reduceBlood + "点血，当前" + target[j].hp + "点血量";
-                } else if(target[j].action == 6) {
-                    html += "抵挡伤害，";
-                    html += "减" + target[j].reduceBlood + "点血，当前" + target[j].hp + "点血量";
-                } else if(target[j].action == 7) {
-                    html += "被斩杀，";
-                    html += "减" + target[j].reduceBlood + "点血，当前" + target[j].hp + "点血量";
-                }
-                if(target[j].isCounter) {
-                    html += "防守者：" + defense.name + "反击，";
-                    html += "反击伤害：" + target[j].counterValue;
-                }
+    html += "攻击者：" + attacker.name + "，";
+    if(data.poison) {
+        html += "中毒，";
+    }
+    if(data.ice) {
+        html += "冰冻，";
+    }
+    if(data.silence) {
+        html += "沉默，";
+    }
+    if(data.stasis) {
+        html += "停滞，";
+    }
+    html += "血量：" + data.hp + "，";
+    if(data.attackType == 2) {
+        html += "触发技能，";
+    }
+    if(data.addAttack) {
+        html += "增加攻击力" + data.addAttack + "，";
+    }
+    if(data.addDamage) {
+        html += "伤害提升" + (data.addDamage * 100) + "%，";
+    }
+    if(data.addSunderArmor) {
+        html += "增加破甲" + data.addSunderArmor + "，";
+    }
+    if(data.addHp) {
+        html += "攻击吸血，加" + data.addHp + "点血，";
+    }
+    if(data.reduceAttack) {
+        html += "降低" + data.reduceAttack + "攻击力，";
+    }
+    if(data.promoteHp) {
+        html += "提升生命值" + data.promoteHp + "，";
+    }
+    if(data.awakeSkill) {
+        html += "触发觉醒技能，";
+    }
+    if(data.targetType == 1) {
+        html += "作用目标己方，";
+
+        for(var j = 0 ; j < target.length ; j++) {
+            defense = getHeroInfo(target[j].id);
+            if(target[j].action == 5) {
+                html += "友方：" + defense.name + "加血，";
+                html += "加" + target[j].addHp + "点血，当前" + target[j].hp + "点血量";
             }
         }
-        html += "攻击阵营，";
-        for(var j = 0 ; j < attackTeam.length ; j++) {
-            player = getHeroInfo(attackTeam[j].id);
-            html += "攻击者：" + player.name + "，";
-            if(attackTeam[j].poison === false) {
-                html += "不再继续中毒，";
+    } else {
+        html += "作用目标敌方，";
+        /*if(data.damageType == 1) {
+         html += "普通攻击，";
+         } else if(data.damageType == 2) {
+         html += "暴击，";
+         }*/
+        html + "对敌方" + target.length + "个单位造成伤害";
+        /**
+         * beHitted: 1,
+         dodge: 2,
+         counter: 3,
+         block: 4
+         */
+        for(var j = 0 ; j < target.length ; j++) {
+            defense = getHeroInfo(target[j].id);
+            if(target[j].damageType == 1) {
+                html += "普通攻击，";
+            } else if(target[j].damageType == 2) {
+                html += "暴击，";
+            } else if(target[j].damageType == 3) {
+                html += "额外伤害，";
+            } else if(target[j].damageType == 4) {
+                html += "溅射伤害，";
             }
-            if(attackTeam[j].addHp) {
-                html += "加血" + attackTeam[j].addHp + "，";
+            html += "防守者：" + defense.name + "，";
+            if(target[j].assimilate) {
+                html += "吸收伤害，";
+                for(var k = 0 ; k < target[j].assimilate.length ; k++) {
+                    player = getHeroInfo(parseInt(target[j].assimilate[k].playerId));
+                    html += "吸收" + player.name + "的" + target[j].assimilate[k].damage + "点伤害，";
+                }
+            }
+            if(target[j].ignoreSkill) {
+                html += "忽略技能，";
+            }
+            if(target[j].poison) {
+                html += "中毒，";
+            }
+            if(target[j].triggerSkill) {
+                html += "防守者触发技能，";
+            }
+            if(target[j].awakeSkill) {
+                html += "防守者触发觉醒技能，";
+            }
+            if(target[j].reduceDamage) {
+                html += "减伤：" + target[j].reduceDamage + "，";
+            }
+            if(target[j].addDefense) {
+                html += "增加护甲：" + target[j].addDefense + "，";
+            }
+            if(target[j].transfer) {
+                html += "转移伤害，";
+            }
+            if(target[j].addMaxHp) {
+                html += "增加生命上限：" + target[j].addMaxHp + "，";
+            }
+            if(target[j].addDodge) {
+                html += "增加闪避：" + target[j].addDodge + "，";
+            }
+            if(target[j].action == 1) {
+                html += "被击中，";
+                html += "减" + target[j].reduceBlood + "点血，当前" + target[j].hp + "点血量";
+            } else if(target[j].action == 2) {
+                html += "闪避，";
+                html += "减" + target[j].reduceBlood + "点血，当前" + target[j].hp + "点血量";
+            } else if(target[j].action == 4) {
+                html += "格挡，";
+                html += "减" + target[j].reduceBlood + "点血，当前" + target[j].hp + "点血量";
+            } else if(target[j].action == 6) {
+                html += "抵挡伤害，";
+                html += "减" + target[j].reduceBlood + "点血，当前" + target[j].hp + "点血量";
+            } else if(target[j].action == 7) {
+                html += "被斩杀，";
+                html += "减" + target[j].reduceBlood + "点血，当前" + target[j].hp + "点血量";
+            }
+            if(target[j].isCounter) {
+                html += "防守者：" + defense.name + "反击，";
+                html += "反击伤害：" + target[j].counterValue;
             }
         }
-        html += "防守阵营，";
-        for(var j = 0 ; j < defenseTeam.length ; j++) {
-            player = getHeroInfo(defenseTeam[j].id);
-            html += "防守者：" + player.name + "，";
-            if(defenseTeam[j].poison === false) {
-                html += "不再继续中毒，";
-            }
-            if(defenseTeam[j].addHp) {
-                html += "加血" + attackTeam[j].addHp + "，";
-            }
+    }
+    html += "攻击阵营，";
+    for(var j = 0 ; j < attackTeam.length ; j++) {
+        player = getHeroInfo(attackTeam[j].id);
+        html += "攻击者：" + player.name + "，";
+        if(attackTeam[j].poison === false) {
+            html += "不再继续中毒，";
+        }
+        if(attackTeam[j].addHp) {
+            html += "加血" + attackTeam[j].addHp + "，";
+        }
+    }
+    html += "防守阵营，";
+    for(var j = 0 ; j < defenseTeam.length ; j++) {
+        player = getHeroInfo(defenseTeam[j].id);
+        html += "防守者：" + player.name + "，";
+        if(defenseTeam[j].poison === false) {
+            html += "不再继续中毒，";
+        }
+        if(defenseTeam[j].addHp) {
+            html += "加血" + attackTeam[j].addHp + "，";
         }
     }
 }
