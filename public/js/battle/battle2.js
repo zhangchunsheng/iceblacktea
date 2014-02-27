@@ -192,7 +192,7 @@ function addContent(data) {
             html += "触发觉醒技能，";
         }
         if(data.battleData[i].fightData) {
-            formatterFighData(data.battleData[i].fightData, html);
+            html += formatterFighData(data.battleData[i].fightData);
         }
         if(data.battleData[i].targetType == 1) {
             html += "作用目标己方，";
@@ -285,7 +285,7 @@ function addContent(data) {
                     html += "反击伤害：" + target[j].counterValue;
                 }
                 if(target[j].fightData) {
-                    formatterFighData(target[j].fightData, html);
+                    html += formatterFighData(target[j].fightData);
                 }
             }
         }
@@ -321,7 +321,7 @@ function addContent(data) {
  *
  * @param data
  */
-function formatterFighData(data, html) {
+function formatterFighData(data) {
     var attackerId;
     var attackerFid;
     var attacker;
@@ -338,6 +338,7 @@ function formatterFighData(data, html) {
     defenseTeam = data.defenseTeam;
 
     attacker = getHeroInfo(attackerId);
+    var html = "";
 
     html += "攻击者：" + attacker.name + "，";
     if(data.poison) {
@@ -491,6 +492,7 @@ function formatterFighData(data, html) {
             html += "加血" + attackTeam[j].addHp + "，";
         }
     }
+    return html;
 }
 
 function getHeroInfo(heroId) {
