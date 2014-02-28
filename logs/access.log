@@ -1,1 +1,2 @@
 127.0.0.1 59 - [Thu, 27 Feb 2014 11:34:48 GMT] "GET /battle/images/favicon.ico HTTP/1.1" 404 124 "-" "Mozilla/5.0 (Windows NT 6.2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/33.0.1750.117 Safari/537.36" 124
+127.0.0.1 2 - [Thu, 27 Feb 2014 17:15:32 GMT] "GET /battle/images/favicon.ico HTTP/1.1" 404 124 "-" "Mozilla/5.0 (Windows NT 6.2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/33.0.1750.117 Safari/537.36" 124
