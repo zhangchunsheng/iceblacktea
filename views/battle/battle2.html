@@ -133,6 +133,8 @@
                         <option value="0" selected="selected">请选择</option>
                         <%
                         _.each(skills, function(item, key, list) {
+                        if(item.type != 1)
+                            return;
                         var name = item.skillId + item.skillName;
                         %>
                         <option value="<%= item.skillId%>"><%= name%></option>
@@ -147,6 +149,8 @@
                         <option value="0" selected="selected">请选择</option>
                         <%
                         _.each(skills, function(item, key, list) {
+                        if(item.type != 2)
+                            return;
                         var name = item.skillId + item.skillName;
                         %>
                         <option value="<%= item.skillId%>"><%= name%></option>
@@ -161,6 +165,56 @@
                         <option value="0" selected="selected">请选择</option>
                         <%
                         _.each(skills, function(item, key, list) {
+                        if(item.type != 3)
+                            return;
+                        var name = item.skillId + item.skillName;
+                        %>
+                        <option value="<%= item.skillId%>"><%= name%></option>
+                        <%
+                        })
+                        %>
+                    </select>
+                </div>
+                <div data-name="skillId4" class="span2 show-grid">
+                    技能4：
+                    <select data-id="selectSkillId4" data-name="selectSkillId4" value="0" class="select-block span3" style="display: none;">
+                        <option value="0" selected="selected">请选择</option>
+                        <%
+                        _.each(skills, function(item, key, list) {
+                        if(item.type != 4)
+                            return;
+                        var name = item.skillId + item.skillName;
+                        %>
+                        <option value="<%= item.skillId%>"><%= name%></option>
+                        <%
+                        })
+                        %>
+                    </select>
+                </div>
+                <div data-name="skillId5" class="span1 show-grid">
+                    技能5：
+                    <select data-id="selectSkillId5" data-name="selectSkillId5" value="0" class="select-block span3" style="display: none;">
+                        <option value="0" selected="selected">请选择</option>
+                        <%
+                        _.each(skills, function(item, key, list) {
+                        if(item.type != 5)
+                            return;
+                        var name = item.skillId + item.skillName;
+                        %>
+                        <option value="<%= item.skillId%>"><%= name%></option>
+                        <%
+                        })
+                        %>
+                    </select>
+                </div>
+                <div data-name="skillId6" class="span2 show-grid">
+                    技能6：
+                    <select data-id="selectSkillId6" data-name="selectSkillId6" value="0" class="select-block span3" style="display: none;">
+                        <option value="0" selected="selected">请选择</option>
+                        <%
+                        _.each(skills, function(item, key, list) {
+                        if(item.type != 6)
+                            return;
                         var name = item.skillId + item.skillName;
                         %>
                         <option value="<%= item.skillId%>"><%= name%></option>

@@ -529,6 +529,9 @@ function selectpicker() {
     $("select[data-name='selectSkillId1']").selectpicker({style: 'btn-primary', menuStyle: 'dropdown-inverse'});
     $("select[data-name='selectSkillId2']").selectpicker({style: 'btn-primary', menuStyle: 'dropdown-inverse'});
     $("select[data-name='selectSkillId3']").selectpicker({style: 'btn-primary', menuStyle: 'dropdown-inverse'});
+    $("select[data-name='selectSkillId4']").selectpicker({style: 'btn-primary', menuStyle: 'dropdown-inverse'});
+    $("select[data-name='selectSkillId5']").selectpicker({style: 'btn-primary', menuStyle: 'dropdown-inverse'});
+    $("select[data-name='selectSkillId6']").selectpicker({style: 'btn-primary', menuStyle: 'dropdown-inverse'});
 }
 
 function checkTeam(team) {
