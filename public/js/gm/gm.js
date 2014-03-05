@@ -20,6 +20,21 @@ $(document).ready(function() {
         request(url, data, that);
         return false;
     });
+
+    $("#initTasks").click(function() {
+        var that = this;
+
+        var host = $("#host").val();
+        var port = $("#port").val();
+        var url = "http://" + host + ":" + port + "/gm/initTasks";
+
+        var nickname = $("#nickname").val();
+        var data = {
+            nickname: nickname
+        };
+        request(url, data, that);
+        return false;
+    });
 });
 
 function request(url, data, obj) {
