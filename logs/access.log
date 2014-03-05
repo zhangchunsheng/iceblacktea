@@ -1,1 +1,4 @@
-127.0.0.1 8 - [Tue, 04 Mar 2014 06:45:45 GMT] "GET /battle/images/favicon.ico HTTP/1.1" 404 124 "-" "Mozilla/5.0 (Windows NT 6.2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/33.0.1750.117 Safari/537.36" 124
+127.0.0.1 58 - [Wed, 05 Mar 2014 03:51:41 GMT] "GET /shared/formula.js HTTP/1.1" 304 - "http://localhost:9090/gm/index" "Mozilla/5.0 (Windows NT 6.2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/33.0.1750.117 Safari/537.36" -
+127.0.0.1 5 - [Wed, 05 Mar 2014 03:51:59 GMT] "GET /shared/formula.js HTTP/1.1" 304 - "http://localhost:9090/gm/index" "Mozilla/5.0 (Windows NT 6.2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/33.0.1750.117 Safari/537.36" -
+127.0.0.1 6 - [Wed, 05 Mar 2014 03:52:17 GMT] "GET /shared/formula.js HTTP/1.1" 304 - "http://localhost:9090/gm/index" "Mozilla/5.0 (Windows NT 6.2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/33.0.1750.117 Safari/537.36" -
+127.0.0.1 6 - [Wed, 05 Mar 2014 03:53:09 GMT] "GET /shared/formula.js HTTP/1.1" 304 - "http://localhost:9090/gm/index" "Mozilla/5.0 (Windows NT 6.2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/33.0.1750.117 Safari/537.36" -
