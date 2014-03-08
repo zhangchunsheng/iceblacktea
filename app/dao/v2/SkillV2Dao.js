@@ -13,7 +13,7 @@ var HeroV2Dao = function() {
 }
 
 HeroV2Dao.prototype.getAllSkills = function(next) {
-    var sql = "SELECT id,skillId,skillName,icon,skillDescription,`type`,onsetType,triggerCondition,initialLevel,initialEffectDesc,ultimateEffectDesc,getMethodDesc,upgradeSkillRequired,forgetSkillRequired FROM game_skillsv2";
+    var sql = "SELECT id,skillId,skillName,icon,skillDescription,`type`,onsetType,triggerCondition,initialLevel,initialEffectDesc,ultimateEffectDesc,getMethodDesc,studyRequired,upgradeSkillRequired,forgetSkillRequired FROM game_skillsv2";
     var array = [];
     mysqlUtil.executeSQL(sql, array, function(err, rows) {
         next(err, rows);
@@ -21,7 +21,7 @@ HeroV2Dao.prototype.getAllSkills = function(next) {
 }
 
 HeroV2Dao.prototype.getData = function(next) {
-    var sql = "SELECT id,skillId,skillName `name`,icon,skillDescription,`type`,onsetType,triggerCondition,initialLevel,initialEffectDesc,ultimateEffectDesc,getMethodDesc,upgradeSkillRequired,forgetSkillRequired FROM game_skillsv2";
+    var sql = "SELECT id,skillId,skillName `name`,icon,skillDescription,`type`,onsetType,triggerCondition,initialLevel,initialEffectDesc,ultimateEffectDesc,getMethodDesc,studyRequired,upgradeSkillRequired,forgetSkillRequired FROM game_skillsv2";
     var array = [];
     mysqlUtil.executeSQL(sql, array, function(err, rows) {
         next(rows);

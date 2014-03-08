@@ -57,16 +57,23 @@ function insertData(data, next) {
     }
 
     //14 0 11 1 12 13 24
+    var studyRequired = [];
     var upgradeSkillRequired = [];//materials level money
     var forgetSkillRequired = [];
     var materials = "";
     var level = 0;
     var money = 0;
+    if(typeof rows[12] != "undefined") {
+        materials = rows[12];
+        studyRequired.push({
+            money: materials
+        });
+    }
     if(typeof rows[11] != "undefined") {
         for(var i = 0 ; i < 4 ; i++) {
-            materials = rows[12 + i * 3];
-            level = parseInt(rows[13 + i * 3]);
-            money = parseInt(rows[14 + i * 3]);
+            materials = rows[13 + i * 3];
+            level = parseInt(rows[14 + i * 3]);
+            money = parseInt(rows[15 + i * 3]);
             upgradeSkillRequired.push({
                 materials: materials,
                 level: level,
@@ -75,8 +82,8 @@ function insertData(data, next) {
         }
     }
 
-    if(typeof rows[24] != "undefined") {
-        materials = rows[24];
+    if(typeof rows[25] != "undefined") {
+        materials = rows[25];
         forgetSkillRequired.push({
             materials: materials
         });
@@ -95,6 +102,7 @@ function insertData(data, next) {
         ultimateEffectDesc: rows[9],
         getMethodDesc: rows[10],
         script_name: "skill" + rows[0].replace("SK", ""),
+        studyRequired: JSON.stringify(studyRequired),
         upgradeSkillRequired: JSON.stringify(upgradeSkillRequired),
         forgetSkillRequired: JSON.stringify(forgetSkillRequired)
     };

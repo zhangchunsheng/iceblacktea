@@ -1,5 +1,2 @@
-127.0.0.1 4 - [Thu, 06 Mar 2014 13:47:32 GMT] "GET /battle/images/favicon.ico HTTP/1.1" 404 124 "-" "Mozilla/5.0 (Windows NT 6.2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/33.0.1750.146 Safari/537.36" 124
-127.0.0.1 177 - [Sat, 08 Mar 2014 06:02:33 GMT] "GET /shared/model/Hero.js HTTP/1.1" 304 - "http://localhost:9090/item" "Mozilla/5.0 (Windows NT 6.2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/33.0.1750.146 Safari/537.36" -
-127.0.0.1 186 - [Sat, 08 Mar 2014 06:02:33 GMT] "GET /shared/formula.js HTTP/1.1" 304 - "http://localhost:9090/item" "Mozilla/5.0 (Windows NT 6.2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/33.0.1750.146 Safari/537.36" -
-127.0.0.1 20 - [Sat, 08 Mar 2014 06:03:49 GMT] "GET /shared/model/Hero.js HTTP/1.1" 304 - "http://localhost:9090/item" "Mozilla/5.0 (Windows NT 6.2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/33.0.1750.146 Safari/537.36" -
-127.0.0.1 27 - [Sat, 08 Mar 2014 06:03:49 GMT] "GET /shared/formula.js HTTP/1.1" 304 - "http://localhost:9090/item" "Mozilla/5.0 (Windows NT 6.2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/33.0.1750.146 Safari/537.36" -
+127.0.0.1 20 - [Sat, 08 Mar 2014 08:05:19 GMT] "GET /shared/model/Hero.js HTTP/1.1" 304 - "http://localhost:9090/skillV2" "Mozilla/5.0 (Windows NT 6.2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/33.0.1750.146 Safari/537.36" -
+127.0.0.1 31 - [Sat, 08 Mar 2014 08:05:19 GMT] "GET /shared/formula.js HTTP/1.1" 304 - "http://localhost:9090/skillV2" "Mozilla/5.0 (Windows NT 6.2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/33.0.1750.146 Safari/537.36" -
