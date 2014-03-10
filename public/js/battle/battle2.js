@@ -511,6 +511,9 @@ var Hero = function() {
     this.s1 = 0;
     this.s2 = 0;
     this.s3 = 0;
+    this.s4 = 0;
+    this.s5 = 0;
+    this.s6 = 0;
 }
 
 var shortName = {
@@ -519,7 +522,10 @@ var shortName = {
     formationId: "f",
     skillId1: "s1",
     skillId2: "s2",
-    skillId3: "s3"
+    skillId3: "s3",
+    skillId4: "s4",
+    skillId5: "s5",
+    skillId6: "s6"
 }
 
 function selectpicker() {
@@ -550,6 +556,12 @@ function checkHeros(heros) {
                 continue;
             if(j == "s3")
                 continue;
+            if(j == "s4")
+                continue;
+            if(j == "s5")
+                continue;
+            if(j == "s6")
+                continue;
             if(heros[i][j] == 0)
                 return false;
         }
@@ -574,6 +586,12 @@ function getHero(dom) {
             hero.s2 = select.val();
         } else if(select.attr("data-id") == "selectSkillId3") {
             hero.s3 = select.val();
+        } else if(select.attr("data-id") == "selectSkillId4") {
+            hero.s4 = select.val();
+        } else if(select.attr("data-id") == "selectSkillId5") {
+            hero.s5 = select.val();
+        } else if(select.attr("data-id") == "selectSkillId6") {
+            hero.s6 = select.val();
         }
     });
     return hero;
