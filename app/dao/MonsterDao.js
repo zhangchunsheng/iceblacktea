@@ -13,7 +13,7 @@ var MonsterDao = function() {
 }
 
 MonsterDao.prototype.getAllMonsters = function(next) {
-    var sql = "SELECT id,monsterId,monsterName,`level`,resourcePath,attackType,hp,attack,defense,speed,focus,dodge,counter,block,criticalHit,critDamage,skillId,experience,money,items,`date`,bz,updateBz FROM seaking_monster";
+    var sql = "SELECT id,monsterId,monsterName,`level`,resourcePath,monsterType,attackType,hp,attack,defense,speed,focus,dodge,counter,block,criticalHit,critDamage,skillId,experience,money,items FROM seaking_monster";
     var array = [];
     mysqlUtil.executeSQL(sql, array, function(err, rows) {
         next(rows);

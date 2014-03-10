@@ -32,31 +32,40 @@ MonsterService.prototype.import = function(next) {
         utils.readFile("app/config/data/monsters.txt", function(data) {
             var rows = [];
             var monster = {};
+            var items = [];
             for(var i = 1 ; i < data.length ; i++) {
                 rows = data[i].split(",");
                 if(data[i].indexOf(",") < 0) {
                     continue;
                 }
+                items = [];
+                if(rows[18] != "")
+                    items.push(rows[18]);
+                if(rows[19] != "")
+                    items.push(rows[19]);
+                if(rows[20] != "")
+                    items.push(rows[20]);
                 monster = {
                     monsterId: rows[0],
-                    monsterName: rows[1],
-                    level: rows[2],
-                    resourcePath: rows[3],
-                    attackType: rows[4],
-                    hp: rows[5],
-                    attack: rows[6],
-                    defense: rows[7],
-                    speed: rows[8],
-                    focus: rows[9],
-                    dodge: rows[10],
-                    counter: rows[11],
-                    block: rows[12],
-                    criticalHit: rows[13],
-                    critDamage: rows[14],
-                    skillId: rows[15],
+                    monsterName: rows[2],
+                    level: rows[3],
+                    resourcePath: rows[4],
+                    monsterType: rows[5],
+                    attackType: rows[6],
+                    hp: rows[7],
+                    attack: rows[8],
+                    defense: rows[9],
+                    speed: rows[10],
+                    focus: rows[11],
+                    dodge: rows[12],
+                    counter: rows[13],
+                    block: rows[14],
+                    criticalHit: rows[15],
+                    critDamage: 1.6,
+                    skillId: "",
                     experience: rows[16],
                     money: rows[17],
-                    items: rows[18]
+                    items: JSON.stringify(items)
                 };
                 monsterDao.insert(monster);
             }
