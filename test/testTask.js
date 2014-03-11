@@ -65,6 +65,8 @@ var loginInfos = [{
 }];
 loginInfo = loginInfos[0];
 
+var taskId = "Task10101";
+
 $(document).ready(function() {
     $("#enterGame").bind("click", function() {
         var host = $("#host").val();
@@ -120,7 +122,8 @@ $(document).ready(function() {
         var data = {
             taskId: "Task10101"
         };
-        request(url, data);
+        taskId = data.taskId;
+        startTask(url, data);
     });
 
     $("#enterIndu").bind("click", function() {
@@ -167,6 +170,30 @@ $(document).ready(function() {
         requestTriggerEvent(url, data);
     });
 
+    $("#buyItem1").bind("click", function() {
+        var host = $("#host").val();
+        var port = $("#port").val();
+        var url = "http://" + host + ":" + port + "/shop/buyItem";
+
+        var data = {
+            itemId: "D010101",
+            npcId: "SH14"
+        };
+        requestTriggerEvent(url, data);
+    });
+
+    $("#buyItem2").bind("click", function() {
+        var host = $("#host").val();
+        var port = $("#port").val();
+        var url = "http://" + host + ":" + port + "/shop/buyItem";
+
+        var data = {
+            itemId: "D010102",
+            npcId: "SH14"
+        };
+        requestTriggerEvent(url, data);
+    });
+
     $("#handOverTask").bind("click", function() {
         var host = $("#host").val();
         var port = $("#port").val();
@@ -175,7 +202,7 @@ $(document).ready(function() {
         var data = {
             taskId: "Task10101"
         };
-        request(url, data);
+        handOverTask(url, data);
     });
 
     $("#clearScreen").bind("click", function() {
@@ -224,8 +251,51 @@ function requestTriggerEvent(url, data) {
             console.log(data);
             if(data.pushMessage) {
                 var task = data.pushMessage[0].data;
-                $("#content").append("任务状态：" + taskStatus[task.status] + "，任务进度：" + task.taskRecord.itemNum + "/3<br/>");
+                $("#content").append("任务状态：" + taskStatus[task.status] + "，任务进度：" + task.taskRecord.itemNum + "/" + task.taskGoal.itemNum + "<br/>");
             }
+        }
+    });
+}
+
+function startTask(url, data) {
+    var params = "";
+    for(var o in data) {
+        params += o + "=" + data[o] + "&"
+    }
+    params = params.substr(0, params.length - 1);
+    console.log(params);
+    $.ajax({
+        type: "get",
+        dataType: "jsonp",
+        jsonp: "jsoncallback",
+        url: url + "?" + params,
+        success: function(data, status) {
+            $("#content").append("接任务：" + JSON.stringify(data) + "<br/>");
+            console.log(data);
+            if(data.pushMessage) {
+                var task = data.pushMessage[0].data;
+                $("#content").append("任务状态：" + taskStatus[task.status] + "，任务进度：" + task.taskRecord.itemNum + "/" + task.taskGoal.itemNum + "<br/>");
+            }
+        }
+    });
+}
+
+function handOverTask(url, data) {
+    var params = "";
+    for(var o in data) {
+        params += o + "=" + data[o] + "&"
+    }
+    params = params.substr(0, params.length - 1);
+    console.log(params);
+    $.ajax({
+        type: "get",
+        dataType: "jsonp",
+        jsonp: "jsoncallback",
+        url: url + "?" + params,
+        success: function(data, status) {
+            console.log(data);
+            var nextTasks = data.nextTasks;
+            $("#content").append("交任务完成，下一任务：" + JSON.stringify(nextTasks["currentMainTask"]) + "，奖励：" + JSON.stringify(data.getItems));
         }
     });
 }
