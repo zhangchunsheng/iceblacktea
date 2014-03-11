@@ -971,7 +971,7 @@ $(document).ready(function() {
             itemId: $("#itemId").val(),
             itemNum: $("#itemNum").val(),
             npcId: $("#npcId").val(),
-			index: $("#pIndex").val(),
+			index: $("#pIndex").val()
         };
         request(url, data);
     });
