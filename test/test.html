@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>testService</title>
+        <meta charset="utf-8" />
+        <style type="text/css">
+            .button {
+                background: #6facbc;
+                padding: 10px;
+                width: 100px;
+                height: 100px;
+                text-align: center;
+                line-height: 100px;
+                margin: 10px;
+                float: left;
+            }
+
+            .clearfix {
+                clear: both;
+            }
+        </style>
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+        <script type="text/javascript" src="./md5.js"></script>
+        <script type="text/javascript" src="./test.js"></script>
+    </head>
+    <body>
+        <div style="float:left">
+            <label for="ucenter_host">host:</label>
+            <select id="ucenter_host">
+                <option value="192.168.1.99">192.168.1.99</option>
+				<option value="192.168.6.99" selected="selected">192.168.6.99</option>
+                <option value="192.168.1.22">192.168.1.22</option>
+                <option value="211.155.86.237">211.155.86.237</option>
+            </select>
+            <label for="ucenter_port">port:</label>
+            <select id="ucenter_port">
+                <option value="8090">8090</option>
+                <option value="8090">8090</option>
+            </select>
+            <label for="loginName">登录名：</label><input id="loginName" type="text" value="wozlla" />
+            <label for="password">密码：</label><input id="password" type="password" value="wozlla" />
+            <label for="password_verify">确定密码：</label><input id="password_verify" type="password" value="wozlla" />
+        </div>
+
+        <div style="clear:both;"></div>
+
+        <div id="register" class="button">注册</div>
+        <div id="autoRegister" class="button">自动注册</div>
+        <div id="relevance" class="button">关联帐号</div>
+        <div id="login" class="button">登录</div>
+        <div id="multiLogin" class="button">多方式登录</div>
+        <div id="hasSession" class="button">hasSession</div>
+		<div id="getServerList" class="button">getServerList</div>
+
+        <div class="clearfix"></div>
+
+        <div>
+			<label for="loginName_token">用户:</label>
+            <select id="loginName_token">
+                <option value="html5" selected="selected">html5</option>
+				<option value="w182074">wozlla1</option>
+				<option value="w182075">wozlla2</option>
+				<option value="w182076">wozlla3</option>
+				<option value="w182077">wozlla4</option>
+				<option value="w182078">wozlla5</option>
+				<option value="w182079">wozlla6</option>
+            </select>
+            <label for="host">host:</label>
+            <select id="host">
+                <option value="192.168.1.99">192.168.1.99</option>
+				<option value="192.168.6.99" selected="selected">192.168.6.99</option>
+                <option value="192.168.1.22">192.168.1.22</option>
+                <option value="211.155.86.237">211.155.86.237</option>
+            </select>
+            <label for="port">port:</label>
+            <select id="port">
+                <option value="4011">4011</option>
+                <option value="6011">6011</option>
+            </select>
+        </div>
+
+        <div id="auth" class="button">auth</div>
+
+        <div>
+            nickname:<input id="nickname" type="text" value="test"/>
+        </div>
+        <div id="createMainPlayer" class="button">创建角色</div>
+        <div id="getMainPlayer" class="button">获得角色信息</div>
+        <div id="getNickname" class="button">获得昵称</div>
+        <div id="removeMainPlayer" class="button">删除角色</div>
+        <div id="testCreateMainPlayer" class="button">创建角色测试</div>
+		<div id="getPlayerInfo" class="button">getPlayerInfo</div>
+
+        <div id="battle" class="button">战斗</div>
+
+        <div class="clearfix"></div>
+
+        <div>伙伴系统</div>
+        <div>
+            cId:<input id="cId" type="text" value="H1103"/>
+        </div>
+        <div id="getPartner" class="button">获得伙伴</div>
+		<div id="gotoStage" class="button">出场</div>
+		<div id="leaveTeam" class="button">离开队伍</div>
+		
+		<div class="clearfix"></div>
+		
+		<div>属性相关</div>
+        <div>
+			playerId:<input id="aptitude_playerId" type="text" value="S1C1P4">
+            aptitudeType:<input id="aptitudeType" type="text" value="3"/>
+			mtype:<input id="mtype" type="text" value="0"/>
+        </div>
+        <div id="aptitude_upgrade" class="button">资质升级</div>
+		<div id="checkFreeTime" class="button">checkFreeTime</div>
+		<div id="checkAllFreeTime" class="button">checkAllFreeTime</div>
+		<div id="ghost_upgrade" class="button">命魂升级</div>
+		<div id="getMiscs" class="button">获得图鉴列表</div>
+		
+		<div class="clearfix"></div>
+		
+		<div>祭坛相关</div>
+        <div>
+			altarId:<input id="altarId" type="text" value="1">
+			heroId:<input id="heroId" type="text" value="H1203">
+        </div>
+        <div id="extraction" class="button">召唤英雄</div>
+		<div id="exchange" class="button">兑换英雄</div>
+		
+		<div class="clearfix"></div>
+		
+		<div>融合系统</div>
+        <div>
+			playerId:<input id="fusion_playerId" type="text" value="S1C1P4">
+			souls:<input id="souls" type="text" value="0,1">
+        </div>
+        <div id="fusion" class="button">融合</div>
+		<div id="fusionWithHeroId" class="button">融合HeroId</div>
+
+        <div class="clearfix"></div>
+
+        <div>地图系统</div>
+        <div>
+            currentScene:<input id="currentScene" type="text" value="city01"/>
+        </div>
+        <div>
+            sceneId:<input id="sceneId" type="text" value="city02"/>
+        </div>
+		<div>
+            currentPage:<input id="currentPage" type="text" value="1"/>
+        </div>
+        <div id="enterScene" class="button">进入场景</div>
+        <div id="changeArea" class="button">切换场景</div>
+        <div id="changeAndGetSceneData" class="button">更新场景</div>
+        <div id="getAreaInfo" class="button">getAreaInfo</div>
+		<div id="getAreaPlayers" class="button">getAreaPlayers</div>
+		<div id="getSceneData" class="button">getSceneData</div>
+
+        <div class="clearfix"></div>
+
+        <div>任务系统</div>
+        <div>
+            taskId:<input id="taskId" type="text" value="Task10101" />
+        </div>
+        <div id="startTask" class="button">接任务</div>
+        <div id="handOverTask" class="button">交任务</div>
+
+        <div class="clearfix"></div>
+
+        <div>阵型系统</div>
+		<div>
+            formation:<input id="formation" type="text" value='{"1":"S1C1","2":"S1C1P4","3":""}'/>
+        </div>
+		<div>
+            tacticalId:<input id="tacticalId" type="text" value='F102'/>
+        </div>
+		<div>
+            formationId:<input id="formationId" type="text" value='1'/>
+        </div>
+        <div id="changeFormation" class="button">更改阵型</div>
+		<div id="setDefault" class="button">设置默认</div>
+		<div id="save" class="button">保存</div>
+		<div id="resetFormation" class="button">重置阵型</div>
+		<div id="unlock" class="button">解锁阵型</div>
+		<div id="forteAttack" class="button">最强攻击</div>
+		<div id="forteDefense" class="button">最强防御</div>
+		<div id="setTactical" class="button">设置阵法</div>
+		<div id="upgradeTactical" class="button">升级阵型</div>
+
+        <div class="clearfix"></div>
+
+        <div>背包系统</div>
+        <div>
+            itemId:<input id="itemId" type="text" value="E10111"/>
+        </div>
+		<div>
+            itemNum:<input id="itemNum" type="text" value="1"/>
+        </div>
+		<div>
+            npcId:<input id="npcId" type="text" value="SH01"/>
+        </div>
+		<div>
+            index:<input id="pIndex" type="text" value="1"/>
+        </div>
+        <div id="addItem" class="button">添加物品</div>
+		<div id="buyItem" class="button">购买</div>
+        <div id="sellItem" class="button">出售</div>
+        <div id="discardItem" class="button">丢弃</div>
+		<div id="userItem" class="button">使用道具</div>
+		<div id="_Set" class="button">_Set</div>
+		<div id="_AddItem" class="button">_AddItem</div>
+		<div id="arrange" class="button">arrange</div>
+		<div id="moveItem" class="button">moveItem</div>
+		<div id="throwItem" class="button">throwItem</div>
+
+        <div class="clearfix"></div>
+
+        <div>商店系统</div>
+        <div id="buyItem" class="button">购买</div>
+
+        <div class="clearfix"></div>
+
+        <div>武器系统</div>
+        <div>
+            playerId:<input id="playerId" type="text" value="S1C1P4">
+        </div>
+        <div>
+            index:<input id="index" type="text" value="2"/>
+        </div>
+        <div>
+            weaponId:<input id="weaponId" type="text" value="W1013102"/>
+        </div>
+        <div>
+            eqId:<input id="eqId" type="text" value="W1013102"/>
+        </div>
+        <div>
+            pkgType:<input id="pkgType" type="text" value="weapons"/>
+        </div>
+        <div>
+            type:<input id="type" type="text" value="weapon"/>
+        </div>
+		<div>
+            cellId:<input id="cellId" type="text" value="1"/>
+        </div>
+		<div>
+            diamondId:<input id="diamondId" type="text" value="B1012"/>
+        </div>
+		<div>
+            diamonds:<input id="diamonds" type="text" value='{"1":"B1012","2":0,"3":0,"4":0}' style="width:600px"/>
+        </div>
+        <div id="wearWeapon" class="button">装载武器</div>
+        <div id="unWearWeapon" class="button">卸载武器</div>
+        <div id="equip" class="button">装载装备</div>
+        <div id="unEquip" class="button">卸载装备</div>
+        <div id="upgrade" class="button">升级装备</div>
+		<div id="forgeUpgrade" class="button">打造装备</div>
+		<div id="inlay" class="button">镶嵌宝石</div>
+		<div id="unInlay" class="button">摘除宝石</div>
+		<div id="changeDiamond" class="button">更换宝石</div>
+
+        <div class="clearfix"></div>
+
+        <div>技能系统</div>
+		<div>
+            playerId:<input id="skillPlayerId" type="text" value="S1C1P4"/>
+        </div>
+		<div>
+            type:<input id="skillType" type="text" value="1"/>
+        </div>
+        <div>
+            skillId:<input id="skillId" type="text" value="SK101101"/>
+        </div>
+        <div id="learnSkill" class="button">学习技能</div>
+        <div id="upgradeSkill" class="button">升级技能</div>
+        <div id="useSkill" class="button">使用技能</div>
+		<div id="learnAndUpgradeSkill" class="button">学习升级技能</div>
+		<div id="forgetSkill" class="button">遗忘技能</div>
+
+        <div class="clearfix"></div>
+
+        <div>副本系统</div>
+		<div>
+            induId:<input id="induId" type="text" value="Ins10101"/>
+        </div>
+        <div>
+            eid:<input id="eid" type="text" value="MG101011"/>MG101011 E101011
+        </div>
+        <div id="enterIndu" class="button">进入副本</div>
+        <div id="leaveIndu" class="button">离开副本</div>
+        <div id="triggerEvent" class="button">副本事件</div>
+
+        <div class="clearfix"></div>
+
+        <div>好友系统</div>
+        <div id="addFriend" class="button">添加好友</div>
+        <div id="delFriend" class="button">删除好友</div>
+        <div id="getFriend" class="button">获得好友</div>
+
+        <div class="clearfix"></div>
+
+        <div>竞技场系统</div>
+        <div id="arena_add" class="button">添加至竞技场</div>
+        <div id="arena_getRank" class="button">获得排名</div>
+        <div id="arena_getOpponents" class="button">获得对手</div>
+        <div id="arena_pk" class="button">pk</div>
+        <div id="enterArena" class="button">进入竞技场</div>
+        <div id="getPKData" class="button">获得PK数据</div>
+
+        <div class="clearfix"></div>
+
+        <div>邮箱系统</div>
+        <div id="getInbox" class="button">收件箱</div>
+        <div id="getOutbox" class="button">发件箱</div>
+        <div id="sendMail" class="button">发送邮件</div>
+        <div id="systemSendMail" class="button">系统发送邮件</div>
+        <div id="readMail" class="button">读邮件</div>
+        <div id="collectItem" class="button">领物品</div>
+        <div id="delMail" class="button">删除邮件</div>
+        <div id="hasNewMail" class="button">新消息</div>
+
+        <div class="clearfix"></div>
+
+        <div>GM</div>
+		<div>
+            nickname:<input id="gm_nickname" type="text" value="test"/>
+        </div>
+		<div>
+            money:<input id="gm_money" type="text" value="10000"/>
+        </div>
+        <div>
+            exp:<input id="gm_exp" type="text" value="10000"/>
+        </div>
+        <div id="resetTask" class="button">更新任务</div>
+        <div id="updateMoney" class="button">更新金币</div>
+		<div id="updateGameCurrency" class="button">更新元宝</div>
+        <div id="updateExp" class="button">更新经验</div>
+		<div id="clearPackage" class="button">清空背包</div>
+		<div id="initTasks" class="button">重置任务</div>
+		<div id="initForgeForEquipment" class="button">打造清零（已装备物品）</div>
+
+        <div class="clearfix"></div>
+
+        <div>消息系统</div>
+        <div id="addMessage" class="button">addMessage</div>
+        <div id="getMessage" class="button">getMessage</div>
+        <div id="removeMessage" class="button">removeMessage</div>
+        <div id="addTipMessage" class="button">addTipMessage</div>
+        <div id="getTipMessage" class="button">getTipMessage</div>
+        <div id="removeTipMessage" class="button">removeTipMessage</div>
+        <div id="addBattleReport" class="button">addBattleReport</div>
+        <div id="getBattleReport" class="button">getBattleReport</div>
+        <div id="removeBattleReport" class="button">removeBattleReport</div>
+        <div id="publishMessage" class="button">publishMessage</div>
+
+        <div class="clearfix"></div>
+
+        <div>聊天</div>
+        <div>
+            content:<textarea id="content" cols="60" rows="6"></textarea>
+        </div>
+        <div id="chat_to_all" class="button">世界</div>
+        <div id="chat_to_priv" class="button">私聊</div>
+        <div id="chat_to_area" class="button">场景</div>
+    </body>
+</html>
