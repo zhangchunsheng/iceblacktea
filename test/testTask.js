@@ -295,7 +295,8 @@ function handOverTask(url, data) {
         success: function(data, status) {
             console.log(data);
             var nextTasks = data.nextTasks;
-            $("#content").append("交任务完成，下一任务：" + JSON.stringify(nextTasks["currentMainTask"]) + "，奖励：" + JSON.stringify(data.getItems));
+            taskId = nextTasks.id;
+            $("#content").append("交任务完成，下一任务：" + JSON.stringify(nextTasks["currentMainTask"]) + "，奖励：" + JSON.stringify(data.getItems) + "<br/>");
         }
     });
 }
