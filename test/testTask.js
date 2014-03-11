@@ -120,7 +120,7 @@ $(document).ready(function() {
         var url = "http://" + host + ":" + port + "/task/startTask";
 
         var data = {
-            taskId: "Task10101"
+            taskId: taskId
         };
         taskId = data.taskId;
         startTask(url, data);
@@ -200,7 +200,7 @@ $(document).ready(function() {
         var url = "http://" + host + ":" + port + "/task/handOverTask";
 
         var data = {
-            taskId: "Task10101"
+            taskId: taskId
         };
         handOverTask(url, data);
     });
