@@ -35,6 +35,21 @@ $(document).ready(function() {
         request(url, data, that);
         return false;
     });
+
+    $("#initForgeForEquipment").click(function() {
+        var that = this;
+
+        var host = $("#host").val();
+        var port = $("#port").val();
+        var url = "http://" + host + ":" + port + "/gm/initForgeForEquipment";
+
+        var nickname = $("#nickname").val();
+        var data = {
+            nickname: nickname
+        };
+        request(url, data, that);
+        return false;
+    });
 });
 
 function request(url, data, obj) {
