@@ -50,6 +50,21 @@ $(document).ready(function() {
         request(url, data, that);
         return false;
     });
+
+    $("#initCharacter").click(function() {
+        var that = this;
+
+        var host = $("#host").val();
+        var port = $("#port").val();
+        var url = "http://" + host + ":" + port + "/gm/initCharacter";
+
+        var nickname = $("#nickname").val();
+        var data = {
+            nickname: nickname
+        };
+        request(url, data, that);
+        return false;
+    });
 });
 
 function request(url, data, obj) {
