@@ -176,8 +176,8 @@ $(document).ready(function() {
         var url = "http://" + host + ":" + port + "/shop/buyItem";
 
         var data = {
-            itemId: "D010101",
-            npcId: "SH14",
+            itemId: "D110101",
+            npcId: "SH11",
             index: 0
         };
         requestTriggerEvent(url, data);
@@ -189,8 +189,8 @@ $(document).ready(function() {
         var url = "http://" + host + ":" + port + "/shop/buyItem";
 
         var data = {
-            itemId: "D010102",
-            npcId: "SH14",
+            itemId: "D110102",
+            npcId: "SH11",
             index: 1
         };
         requestTriggerEvent(url, data);
