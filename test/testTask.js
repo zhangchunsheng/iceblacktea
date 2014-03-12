@@ -177,7 +177,8 @@ $(document).ready(function() {
 
         var data = {
             itemId: "D010101",
-            npcId: "SH14"
+            npcId: "SH14",
+            index: 0
         };
         requestTriggerEvent(url, data);
     });
@@ -189,7 +190,8 @@ $(document).ready(function() {
 
         var data = {
             itemId: "D010102",
-            npcId: "SH14"
+            npcId: "SH14",
+            index: 1
         };
         requestTriggerEvent(url, data);
     });
@@ -295,7 +297,7 @@ function handOverTask(url, data) {
         success: function(data, status) {
             console.log(data);
             var nextTasks = data.nextTasks;
-            taskId = nextTasks.id;
+            taskId = nextTasks.currentMainTask.id;
             $("#content").append("交任务完成，下一任务：" + JSON.stringify(nextTasks["currentMainTask"]) + "，奖励：" + JSON.stringify(data.getItems) + "<br/>");
         }
     });
