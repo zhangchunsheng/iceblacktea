@@ -170,6 +170,17 @@ $(document).ready(function() {
         requestTriggerEvent(url, data);
     });
 
+    $("#triggerEvent4").bind("click", function() {
+        var host = $("#host").val();
+        var port = $("#port").val();
+        var url = "http://" + host + ":" + port + "/indu/triggerEvent";
+
+        var data = {
+            eid: "MG101015"
+        };
+        requestTriggerEvent(url, data);
+    });
+
     $("#buyItem1").bind("click", function() {
         var host = $("#host").val();
         var port = $("#port").val();
